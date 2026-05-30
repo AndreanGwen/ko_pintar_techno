@@ -1,0 +1,909 @@
+<!doctype html>
+
+<html class="dark" lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>KoPintar - Anggota</title>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Material Symbols -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Theme Configuration -->
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-primary": "#842bd2",
+              "secondary-fixed": "#6ffbbe",
+              "on-primary": "#490080",
+              surface: "#131313",
+              tertiary: "#c0c1ff",
+              "surface-container-low": "#1c1b1b",
+              "on-surface-variant": "#cfc2d6",
+              "on-tertiary-fixed-variant": "#2f2ebe",
+              "primary-fixed-dim": "#ddb7ff",
+              primary: "#ddb7ff",
+              "surface-container": "#201f1f",
+              "inverse-surface": "#e5e2e1",
+              "surface-dim": "#131313",
+              "surface-container-highest": "#353534",
+              "tertiary-fixed": "#e1e0ff",
+              "on-primary-fixed": "#2c0051",
+              "on-tertiary-container": "#0d0096",
+              "tertiary-fixed-dim": "#c0c1ff",
+              "inverse-on-surface": "#313030",
+              "on-primary-container": "#400071",
+              "surface-container-high": "#2a2a2a",
+              "outline-variant": "#4d4354",
+              "on-secondary-fixed-variant": "#005236",
+              "on-tertiary": "#1000a9",
+              "surface-container-lowest": "#0e0e0e",
+              "error-container": "#93000a",
+              error: "#ffb4ab",
+              "secondary-fixed-dim": "#4edea3",
+              "on-tertiary-fixed": "#07006c",
+              "on-background": "#e5e2e1",
+              "primary-container": "#b76dff",
+              outline: "#988d9f",
+              "tertiary-container": "#8083ff",
+              background: "#131313",
+              "on-secondary-container": "#00311f",
+              "secondary-container": "#00a572",
+              "surface-bright": "#393939",
+              "on-primary-fixed-variant": "#6900b3",
+              "on-secondary": "#003824",
+              "on-secondary-fixed": "#002113",
+              "on-surface": "#e5e2e1",
+              "on-error": "#690005",
+              "on-error-container": "#ffdad6",
+              "surface-variant": "#353534",
+              "surface-tint": "#ddb7ff",
+              secondary: "#4edea3",
+              "primary-fixed": "#f0dbff",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "stack-sm": "0.5rem",
+              gutter: "1.5rem",
+              "sidebar-width": "280px",
+              "stack-lg": "2rem",
+              "container-padding": "2rem",
+              "stack-md": "1rem",
+            },
+            fontFamily: {
+              "label-md": ["Inter"],
+              "headline-lg": ["Plus Jakarta Sans"],
+              "body-lg": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Plus Jakarta Sans"],
+              "body-sm": ["Plus Jakarta Sans"],
+              "display-lg": ["Plus Jakarta Sans"],
+              "body-md": ["Plus Jakarta Sans"],
+              "headline-md": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "label-md": [
+                "12px",
+                { lineHeight: "1", letterSpacing: "0.05em", fontWeight: "600" },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+              "headline-lg-mobile": [
+                "28px",
+                { lineHeight: "1.2", fontWeight: "600" },
+              ],
+              "body-sm": ["14px", { lineHeight: "1.5", fontWeight: "400" }],
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "1.1",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+              "headline-md": ["24px", { lineHeight: "1.3", fontWeight: "600" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Custom glow effects as per style guidance */
+      .glow-primary:hover {
+        box-shadow: 0 0 15px rgba(221, 183, 255, 0.2); /* primary color glow */
+      }
+      .glow-secondary:hover {
+        box-shadow: 0 0 15px rgba(78, 222, 163, 0.2); /* secondary color glow */
+      }
+      /* Hide scrollbar for cleaner look in sidebar */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-surface-container-lowest text-on-surface font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container"
+  >
+    <!-- JSON Component: SideNavBar -->
+    <!-- Applying structural logic: w-sidebar-width h-screen fixed left-0 top-0 overflow-y-auto flex flex-col py-gutter px-4 border-r border-outline-variant bg-surface-container-low -->
+    <aside
+      class="w-sidebar-width h-screen fixed left-0 top-0 overflow-y-auto no-scrollbar flex flex-col py-gutter px-4 border-r border-outline-variant dark:border-outline-variant bg-surface-container-low dark:bg-surface-container-low z-50"
+    >
+      <!-- Brand / Header -->
+      <div class="flex items-center gap-3 mb-8 px-2">
+        <div
+          class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center shrink-0 border border-primary/30"
+        >
+          <span
+            class="material-symbols-outlined text-primary"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >hexagon</span
+          >
+        </div>
+        <div class="flex flex-col">
+          <!-- style_brand_logo applied -->
+          <span
+            class="text-headline-md font-headline-md font-bold text-primary dark:text-primary leading-none"
+            >KoPintar</span
+          >
+          <span class="text-label-md font-label-md text-on-surface-variant mt-1"
+            >Koperasi Harapan Baru</span
+          >
+        </div>
+      </div>
+      <!-- Navigation Tabs -->
+      <nav class="flex-1 flex flex-col gap-1">
+        <!-- Beranda -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="dashboard.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >dashboard</span
+          >
+          <span class="text-body-sm font-body-sm">Dashboard</span>
+        </a>
+        <!-- Anggota (ACTIVE STATE based on Intent) -->
+        <!-- style_active_navigation applied exactly -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-primary dark:text-primary bg-primary-container/10 border-l-4 border-primary font-bold group"
+          href="anggota.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >group</span
+          >
+          <span class="text-body-sm font-body-sm">Anggota</span>
+        </a>
+        <!-- Transaksi -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="transaksi.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >receipt_long</span
+          >
+          <span class="text-body-sm font-body-sm">Transaksi</span>
+        </a>
+        <!-- Inventaris -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="inventaris.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >inventory_2</span
+          >
+          <span class="text-body-sm font-body-sm">Inventaris</span>
+        </a>
+        <!-- Laporan -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >assessment</span
+          >
+          <span class="text-body-sm font-body-sm">Laporan</span>
+        </a>
+        <!-- Pengguna & Peran -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >manage_accounts</span
+          >
+          <span class="text-body-sm font-body-sm">Pengguna &amp; Peran</span>
+        </a>
+        <!-- Pengaturan -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >settings</span
+          >
+          <span class="text-body-sm font-body-sm">Pengaturan</span>
+        </a>
+        <div class="my-2 border-t border-surface-variant/50"></div>
+        <!-- Audit Log -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >history_edu</span
+          >
+          <span class="text-body-sm font-body-sm">Audit Log</span>
+        </a>
+        <!-- Peternakan -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="modul.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >pets</span
+          >
+          <span class="text-body-sm font-body-sm">Peternakan</span>
+        </a>
+        <!-- Pertanian -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >agriculture</span
+          >
+          <span class="text-body-sm font-body-sm">Pertanian</span>
+        </a>
+        <!-- Perikanan -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >phishing</span
+          >
+          <span class="text-body-sm font-body-sm">Perikanan</span>
+        </a>
+        <!-- Simpan Pinjam -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >account_balance</span
+          >
+          <span class="text-body-sm font-body-sm">Simpan Pinjam</span>
+        </a>
+        <!-- Perdagangan -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >storefront</span
+          >
+          <span class="text-body-sm font-body-sm">Perdagangan</span>
+        </a>
+        <!-- Offline Sync -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >sync_disabled</span
+          >
+          <span class="text-body-sm font-body-sm">Offline Sync</span>
+        </a>
+        <!-- Marketplace -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >shopping_bag</span
+          >
+          <span class="text-body-sm font-body-sm">Marketplace</span>
+        </a>
+      </nav>
+      <!-- CTA Widget -->
+      <div
+        class="mt-6 p-4 rounded-xl bg-gradient-to-br from-primary-container/20 to-transparent border border-primary/20 flex flex-col items-center text-center"
+      >
+        <span
+          class="material-symbols-outlined text-primary mb-2 text-[28px]"
+          style="font-variation-settings: &quot;FILL&quot; 1"
+          >storefront</span
+        >
+        <span
+          class="text-body-sm font-body-sm font-semibold text-on-surface mb-3"
+          >Buka Marketplace</span
+        >
+        <button
+          class="w-full py-2 px-4 rounded-lg bg-primary text-on-primary text-label-md font-label-md hover:bg-primary-fixed transition-colors glow-primary"
+        >
+          Kunjungi Sekarang
+        </button>
+      </div>
+      <!-- Footer Actions -->
+      <div
+        class="mt-6 pt-4 border-t border-surface-variant/50 flex flex-col gap-1"
+      >
+        <a
+          class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface transition-colors"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px]"
+            >help_outline</span
+          >
+          <span class="text-body-sm font-body-sm">Bantuan</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-3 py-2 rounded-lg text-error hover:bg-error/10 transition-colors"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px]">logout</span>
+          <span class="text-body-sm font-body-sm">Keluar</span>
+        </a>
+      </div>
+    </aside>
+    <!-- Main Content Wrapper -->
+    <div class="ml-sidebar-width flex flex-col min-h-screen">
+      <!-- JSON Component: TopAppBar -->
+      <!-- Applying structural logic: fixed top-0 right-0 w-[calc(100%-280px)] z-40 bg-surface border-b border-outline-variant flex justify-between items-center h-16 px-gutter ml-sidebar-width -->
+      <header
+        class="fixed top-0 right-0 w-[calc(100%-280px)] z-40 bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline-variant flex justify-between items-center h-16 px-gutter ml-sidebar-width"
+      >
+        <!-- Left Side: Search Bar placeholder as per request -->
+        <div class="flex-1 max-w-md">
+          <div
+            class="relative flex items-center w-full h-10 rounded-full bg-surface-container-highest border border-outline-variant focus-within:border-primary focus-within:ring-1 focus-within:ring-primary overflow-hidden transition-all"
+          >
+            <div
+              class="grid place-items-center h-full w-12 text-on-surface-variant"
+            >
+              <span class="material-symbols-outlined text-[20px]">search</span>
+            </div>
+            <input
+              class="peer h-full w-full outline-none text-body-sm font-body-sm text-on-surface bg-transparent pr-4 placeholder-on-surface-variant/50 border-none focus:ring-0"
+              id="global-search"
+              placeholder="Cari anggota, transaksi..."
+              type="text"
+            />
+          </div>
+        </div>
+        <!-- Right Side: Icons & Profile -->
+        <div class="flex items-center gap-2">
+          <!-- Trailing Icons -->
+          <button
+            class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-secondary-fixed dark:hover:text-secondary-fixed transition-colors active:opacity-80"
+          >
+            <span class="material-symbols-outlined">notifications</span>
+          </button>
+          <button
+            class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-secondary-fixed dark:hover:text-secondary-fixed transition-colors active:opacity-80"
+          >
+            <span class="material-symbols-outlined">apps</span>
+          </button>
+          <div class="h-6 w-[1px] bg-outline-variant mx-2"></div>
+          <!-- Profile Avatar -->
+          <button
+            class="flex items-center gap-3 hover:opacity-80 transition-opacity"
+          >
+            <div
+              class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center overflow-hidden border border-outline-variant"
+            >
+              <span
+                class="material-symbols-outlined text-on-surface-variant"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >account_circle</span
+              >
+            </div>
+          </button>
+        </div>
+      </header>
+      <!-- Main Canvas Content -->
+      <!-- Offset for fixed header -->
+      <main class="flex-1 p-gutter pt-[calc(64px+1.5rem)] pb-12">
+        <!-- Page Header -->
+        <div
+          class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8"
+        >
+          <div>
+            <h1 class="text-headline-lg font-headline-lg text-on-surface mb-1">
+              Manajemen Anggota
+            </h1>
+            <p class="text-body-sm font-body-sm text-on-surface-variant">
+              Kelola data, status, dan simpanan anggota koperasi.
+            </p>
+          </div>
+          <button
+            class="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-on-primary text-label-md font-label-md hover:bg-primary-fixed transition-all glow-primary"
+          >
+            <span class="material-symbols-outlined text-[18px]"
+              >person_add</span
+            >
+            Tambah Anggota Baru
+          </button>
+        </div>
+        <!-- Filters & Controls Section -->
+        <div
+          class="flex flex-col md:flex-row justify-between items-end gap-4 mb-6"
+        >
+          <!-- Search within page -->
+          <div class="w-full md:w-80 relative">
+            <label
+              class="block text-label-md font-label-md text-on-surface-variant mb-1.5 ml-1"
+              >Pencarian Spesifik</label
+            >
+            <div
+              class="relative flex items-center w-full h-10 rounded-lg bg-surface border border-outline-variant focus-within:border-primary focus-within:shadow-[0_0_10px_rgba(221,183,255,0.1)] transition-all"
+            >
+              <span
+                class="material-symbols-outlined absolute left-3 text-on-surface-variant text-[18px]"
+                >search</span
+              >
+              <input
+                class="w-full h-full bg-transparent border-none focus:ring-0 pl-10 pr-4 text-body-sm font-body-sm text-on-surface placeholder-on-surface-variant/40"
+                placeholder="Nama atau ID Anggota..."
+                type="text"
+              />
+            </div>
+          </div>
+          <!-- Status Filter -->
+          <div class="w-full md:w-48 relative">
+            <label
+              class="block text-label-md font-label-md text-on-surface-variant mb-1.5 ml-1"
+              >Status Anggota</label
+            >
+            <div class="relative">
+              <select
+                class="w-full h-10 rounded-lg bg-surface border border-outline-variant text-body-sm font-body-sm text-on-surface appearance-none px-4 focus:border-primary focus:ring-0 focus:shadow-[0_0_10px_rgba(221,183,255,0.1)] transition-all"
+              >
+                <option value="all">Semua Status</option>
+                <option value="aktif">Aktif</option>
+                <option value="inaktif">Inaktif</option>
+              </select>
+              <span
+                class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none"
+                >expand_more</span
+              >
+            </div>
+          </div>
+          <!-- Action Tools -->
+          <div class="flex gap-2">
+            <button
+              class="w-10 h-10 rounded-lg border border-outline-variant flex items-center justify-center text-on-surface hover:bg-surface-variant transition-colors"
+              title="Export Data"
+            >
+              <span class="material-symbols-outlined text-[20px]"
+                >download</span
+              >
+            </button>
+            <button
+              class="w-10 h-10 rounded-lg border border-outline-variant flex items-center justify-center text-on-surface hover:bg-surface-variant transition-colors"
+              title="Print"
+            >
+              <span class="material-symbols-outlined text-[20px]">print</span>
+            </button>
+          </div>
+        </div>
+        <!-- Data Grid (Glassmorphic Card as per style guide) -->
+        <div
+          class="bg-surface-container-low rounded-2xl border border-surface-container-highest shadow-lg overflow-hidden flex flex-col relative z-10"
+        >
+          <!-- Decorative top border glow -->
+          <div
+            class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent"
+          ></div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse whitespace-nowrap">
+              <thead>
+                <tr
+                  class="bg-surface-container/50 border-b border-surface-variant"
+                >
+                  <!-- Headers in Inter, Uppercase, 12px -->
+                  <th
+                    class="py-4 px-6 text-on-surface-variant font-label-md text-label-md uppercase tracking-wider"
+                  >
+                    ID
+                  </th>
+                  <th
+                    class="py-4 px-6 text-on-surface-variant font-label-md text-label-md uppercase tracking-wider"
+                  >
+                    Nama Lengkap
+                  </th>
+                  <th
+                    class="py-4 px-6 text-on-surface-variant font-label-md text-label-md uppercase tracking-wider"
+                  >
+                    Status
+                  </th>
+                  <th
+                    class="py-4 px-6 text-on-surface-variant font-label-md text-label-md uppercase tracking-wider text-right"
+                  >
+                    Simpanan Pokok
+                  </th>
+                  <th
+                    class="py-4 px-6 text-on-surface-variant font-label-md text-label-md uppercase tracking-wider text-right"
+                  >
+                    Simpanan Wajib
+                  </th>
+                  <th
+                    class="py-4 px-6 text-on-surface-variant font-label-md text-label-md uppercase tracking-wider text-center"
+                  >
+                    Aksi
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-surface-variant">
+                <!-- Row 1 -->
+                <tr class="hover:bg-[#27272A]/50 transition-colors group">
+                  <td
+                    class="py-4 px-6 text-body-sm font-body-sm font-medium text-on-surface"
+                  >
+                    KOP-001
+                  </td>
+                  <td class="py-4 px-6">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant text-label-md font-label-md"
+                      >
+                        BS
+                      </div>
+                      <div class="flex flex-col">
+                        <span class="text-body-sm font-body-sm text-on-surface"
+                          >Budi Santoso</span
+                        >
+                        <span class="text-[11px] text-on-surface-variant"
+                          >Bergabung: Jan 2023</span
+                        >
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-4 px-6">
+                    <!-- Emerald Green for Aktif -->
+                    <span
+                      class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/10 border border-secondary/20 text-secondary text-label-md font-label-md"
+                    >
+                      <span
+                        class="w-1.5 h-1.5 rounded-full bg-secondary shadow-[0_0_5px_#4edea3]"
+                      ></span>
+                      Aktif
+                    </span>
+                  </td>
+                  <td
+                    class="py-4 px-6 text-body-sm font-body-sm text-on-surface text-right font-mono"
+                  >
+                    Rp 500.000
+                  </td>
+                  <td
+                    class="py-4 px-6 text-body-sm font-body-sm text-on-surface text-right font-mono"
+                  >
+                    Rp 1.250.000
+                  </td>
+                  <td class="py-4 px-6 text-center">
+                    <div
+                      class="flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <button
+                        class="p-1.5 rounded bg-surface hover:bg-surface-variant text-on-surface-variant hover:text-primary transition-colors"
+                        title="Edit"
+                      >
+                        <span class="material-symbols-outlined text-[18px]"
+                          >edit</span
+                        >
+                      </button>
+                      <button
+                        class="p-1.5 rounded bg-surface hover:bg-surface-variant text-on-surface-variant hover:text-secondary transition-colors"
+                        title="Detail"
+                      >
+                        <span class="material-symbols-outlined text-[18px]"
+                          >visibility</span
+                        >
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Row 2 -->
+                <tr class="hover:bg-[#27272A]/50 transition-colors group">
+                  <td
+                    class="py-4 px-6 text-body-sm font-body-sm font-medium text-on-surface"
+                  >
+                    KOP-002
+                  </td>
+                  <td class="py-4 px-6">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant text-label-md font-label-md"
+                      >
+                        SM
+                      </div>
+                      <div class="flex flex-col">
+                        <span class="text-body-sm font-body-sm text-on-surface"
+                          >Siti Aminah</span
+                        >
+                        <span class="text-[11px] text-on-surface-variant"
+                          >Bergabung: Feb 2023</span
+                        >
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-4 px-6">
+                    <span
+                      class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/10 border border-secondary/20 text-secondary text-label-md font-label-md"
+                    >
+                      <span
+                        class="w-1.5 h-1.5 rounded-full bg-secondary shadow-[0_0_5px_#4edea3]"
+                      ></span>
+                      Aktif
+                    </span>
+                  </td>
+                  <td
+                    class="py-4 px-6 text-body-sm font-body-sm text-on-surface text-right font-mono"
+                  >
+                    Rp 500.000
+                  </td>
+                  <td
+                    class="py-4 px-6 text-body-sm font-body-sm text-on-surface text-right font-mono"
+                  >
+                    Rp 900.000
+                  </td>
+                  <td class="py-4 px-6 text-center">
+                    <div
+                      class="flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <button
+                        class="p-1.5 rounded bg-surface hover:bg-surface-variant text-on-surface-variant hover:text-primary transition-colors"
+                        title="Edit"
+                      >
+                        <span class="material-symbols-outlined text-[18px]"
+                          >edit</span
+                        >
+                      </button>
+                      <button
+                        class="p-1.5 rounded bg-surface hover:bg-surface-variant text-on-surface-variant hover:text-secondary transition-colors"
+                        title="Detail"
+                      >
+                        <span class="material-symbols-outlined text-[18px]"
+                          >visibility</span
+                        >
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Row 3 (Inactive) -->
+                <tr class="hover:bg-[#27272A]/50 transition-colors group">
+                  <td
+                    class="py-4 px-6 text-body-sm font-body-sm font-medium text-on-surface"
+                  >
+                    KOP-003
+                  </td>
+                  <td class="py-4 px-6">
+                    <div class="flex items-center gap-3 opacity-60">
+                      <div
+                        class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-outline text-label-md font-label-md"
+                      >
+                        AW
+                      </div>
+                      <div class="flex flex-col">
+                        <span class="text-body-sm font-body-sm text-on-surface"
+                          >Agus Wijaya</span
+                        >
+                        <span class="text-[11px] text-on-surface-variant"
+                          >Berhenti: Okt 2023</span
+                        >
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-4 px-6">
+                    <!-- Gray/Dim for Inaktif -->
+                    <span
+                      class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-variant border border-outline-variant text-on-surface-variant text-label-md font-label-md opacity-80"
+                    >
+                      <span
+                        class="w-1.5 h-1.5 rounded-full bg-outline-variant"
+                      ></span>
+                      Inaktif
+                    </span>
+                  </td>
+                  <td
+                    class="py-4 px-6 text-body-sm font-body-sm text-on-surface-variant text-right font-mono opacity-60"
+                  >
+                    Rp 500.000
+                  </td>
+                  <td
+                    class="py-4 px-6 text-body-sm font-body-sm text-on-surface-variant text-right font-mono opacity-60"
+                  >
+                    Rp 300.000
+                  </td>
+                  <td class="py-4 px-6 text-center">
+                    <div
+                      class="flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <button
+                        class="p-1.5 rounded bg-surface hover:bg-surface-variant text-on-surface-variant hover:text-primary transition-colors"
+                        title="Edit"
+                      >
+                        <span class="material-symbols-outlined text-[18px]"
+                          >edit</span
+                        >
+                      </button>
+                      <button
+                        class="p-1.5 rounded bg-surface hover:bg-surface-variant text-on-surface-variant hover:text-secondary transition-colors"
+                        title="Detail"
+                      >
+                        <span class="material-symbols-outlined text-[18px]"
+                          >visibility</span
+                        >
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Row 4 -->
+                <tr class="hover:bg-[#27272A]/50 transition-colors group">
+                  <td
+                    class="py-4 px-6 text-body-sm font-body-sm font-medium text-on-surface"
+                  >
+                    KOP-004
+                  </td>
+                  <td class="py-4 px-6">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant text-label-md font-label-md"
+                      >
+                        DP
+                      </div>
+                      <div class="flex flex-col">
+                        <span class="text-body-sm font-body-sm text-on-surface"
+                          >Dewi Putri</span
+                        >
+                        <span class="text-[11px] text-on-surface-variant"
+                          >Bergabung: Mar 2023</span
+                        >
+                      </div>
+                    </div>
+                  </td>
+                  <td class="py-4 px-6">
+                    <span
+                      class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/10 border border-secondary/20 text-secondary text-label-md font-label-md"
+                    >
+                      <span
+                        class="w-1.5 h-1.5 rounded-full bg-secondary shadow-[0_0_5px_#4edea3]"
+                      ></span>
+                      Aktif
+                    </span>
+                  </td>
+                  <td
+                    class="py-4 px-6 text-body-sm font-body-sm text-on-surface text-right font-mono"
+                  >
+                    Rp 500.000
+                  </td>
+                  <td
+                    class="py-4 px-6 text-body-sm font-body-sm text-on-surface text-right font-mono"
+                  >
+                    Rp 750.000
+                  </td>
+                  <td class="py-4 px-6 text-center">
+                    <div
+                      class="flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <button
+                        class="p-1.5 rounded bg-surface hover:bg-surface-variant text-on-surface-variant hover:text-primary transition-colors"
+                        title="Edit"
+                      >
+                        <span class="material-symbols-outlined text-[18px]"
+                          >edit</span
+                        >
+                      </button>
+                      <button
+                        class="p-1.5 rounded bg-surface hover:bg-surface-variant text-on-surface-variant hover:text-secondary transition-colors"
+                        title="Detail"
+                      >
+                        <span class="material-symbols-outlined text-[18px]"
+                          >visibility</span
+                        >
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Pagination Footer -->
+          <div
+            class="py-4 px-6 border-t border-surface-variant bg-surface-container/30 flex items-center justify-between"
+          >
+            <span class="text-label-md font-label-md text-on-surface-variant"
+              >Menampilkan 1-4 dari 124 anggota</span
+            >
+            <div class="flex items-center gap-1">
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded text-on-surface-variant hover:bg-surface-variant hover:text-on-surface disabled:opacity-50"
+                disabled=""
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >chevron_left</span
+                >
+              </button>
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded bg-primary/10 text-primary border border-primary/20 font-label-md"
+              >
+                1
+              </button>
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded text-on-surface hover:bg-surface-variant font-label-md"
+              >
+                2
+              </button>
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded text-on-surface hover:bg-surface-variant font-label-md"
+              >
+                3
+              </button>
+              <span
+                class="w-8 flex items-center justify-center text-on-surface-variant"
+                >...</span
+              >
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded text-on-surface-variant hover:bg-surface-variant hover:text-on-surface"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >chevron_right</span
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
