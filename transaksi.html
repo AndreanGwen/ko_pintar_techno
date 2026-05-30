@@ -1,0 +1,803 @@
+<!doctype html>
+
+<html class="dark" lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>KoPintar - Transaksi</title>
+    <!-- Google Fonts & Material Symbols -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Tailwind Configuration (Provided) -->
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-primary": "#842bd2",
+              "secondary-fixed": "#6ffbbe",
+              "on-primary": "#490080",
+              surface: "#131313",
+              tertiary: "#c0c1ff",
+              "surface-container-low": "#1c1b1b",
+              "on-surface-variant": "#cfc2d6",
+              "on-tertiary-fixed-variant": "#2f2ebe",
+              "primary-fixed-dim": "#ddb7ff",
+              primary: "#ddb7ff",
+              "surface-container": "#201f1f",
+              "inverse-surface": "#e5e2e1",
+              "surface-dim": "#131313",
+              "surface-container-highest": "#353534",
+              "tertiary-fixed": "#e1e0ff",
+              "on-primary-fixed": "#2c0051",
+              "on-tertiary-container": "#0d0096",
+              "tertiary-fixed-dim": "#c0c1ff",
+              "inverse-on-surface": "#313030",
+              "on-primary-container": "#400071",
+              "surface-container-high": "#2a2a2a",
+              "outline-variant": "#4d4354",
+              "on-secondary-fixed-variant": "#005236",
+              "on-tertiary": "#1000a9",
+              "surface-container-lowest": "#0e0e0e",
+              "error-container": "#93000a",
+              error: "#ffb4ab",
+              "secondary-fixed-dim": "#4edea3",
+              "on-tertiary-fixed": "#07006c",
+              "on-background": "#e5e2e1",
+              "primary-container": "#b76dff",
+              outline: "#988d9f",
+              "tertiary-container": "#8083ff",
+              background: "#131313",
+              "on-secondary-container": "#00311f",
+              "secondary-container": "#00a572",
+              "surface-bright": "#393939",
+              "on-primary-fixed-variant": "#6900b3",
+              "on-secondary": "#003824",
+              "on-secondary-fixed": "#002113",
+              "on-surface": "#e5e2e1",
+              "on-error": "#690005",
+              "on-error-container": "#ffdad6",
+              "surface-variant": "#353534",
+              "surface-tint": "#ddb7ff",
+              secondary: "#4edea3",
+              "primary-fixed": "#f0dbff",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "stack-sm": "0.5rem",
+              gutter: "1.5rem",
+              "sidebar-width": "280px",
+              "stack-lg": "2rem",
+              "container-padding": "2rem",
+              "stack-md": "1rem",
+            },
+            fontFamily: {
+              "label-md": ["Inter"],
+              "headline-lg": ["Plus Jakarta Sans"],
+              "body-lg": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Plus Jakarta Sans"],
+              "body-sm": ["Plus Jakarta Sans"],
+              "display-lg": ["Plus Jakarta Sans"],
+              "body-md": ["Plus Jakarta Sans"],
+              "headline-md": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "label-md": [
+                "12px",
+                {
+                  lineHeight: "1",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-lg": [
+                "18px",
+                {
+                  lineHeight: "1.6",
+                  fontWeight: "400",
+                },
+              ],
+              "headline-lg-mobile": [
+                "28px",
+                {
+                  lineHeight: "1.2",
+                  fontWeight: "600",
+                },
+              ],
+              "body-sm": [
+                "14px",
+                {
+                  lineHeight: "1.5",
+                  fontWeight: "400",
+                },
+              ],
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "1.1",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-md": [
+                "16px",
+                {
+                  lineHeight: "1.6",
+                  fontWeight: "400",
+                },
+              ],
+              "headline-md": [
+                "24px",
+                {
+                  lineHeight: "1.3",
+                  fontWeight: "600",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Custom Scrollbar for dark theme */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #131313;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #353534;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #4d4354;
+      }
+
+      /* Subtle glow utilities */
+      .glow-primary-hover:hover {
+        box-shadow: 0 0 15px rgba(221, 183, 255, 0.4);
+        transform: translateY(-1px);
+      }
+      .glow-secondary-hover:hover {
+        box-shadow: 0 0 15px rgba(78, 222, 163, 0.4);
+        transform: translateY(-1px);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-background font-body-md text-body-md antialiased overflow-x-hidden min-h-screen flex"
+  >
+    <!-- SideNavBar (Desktop) -->
+    <nav
+      class="hidden md:flex flex-col h-screen fixed left-0 top-0 overflow-y-auto w-sidebar-width z-50 bg-surface-container-low dark:bg-surface-container-low border-r border-outline-variant dark:border-outline-variant py-gutter px-4 transition-all duration-300"
+    >
+      <!-- Brand Header -->
+      <div class="flex items-center gap-3 px-3 mb-8">
+        <div
+          class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center shrink-0"
+        >
+          <span
+            class="material-symbols-outlined text-on-primary-container"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >account_balance</span
+          >
+        </div>
+        <div class="flex flex-col">
+          <span
+            class="text-headline-md font-headline-md font-bold text-primary dark:text-primary leading-tight"
+            >KoPintar</span
+          >
+          <span
+            class="text-label-md font-label-md text-on-surface-variant truncate w-40"
+            >Koperasi Harapan Baru</span
+          >
+        </div>
+      </div>
+      <!-- Navigation Links -->
+      <div class="flex-1 flex flex-col gap-1 overflow-y-auto">
+        <!-- Beranda -->
+        <a
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="dashboard.html"
+        >
+          <span
+            class="material-symbols-outlined group-hover:text-primary transition-colors"
+            >dashboard</span
+          >
+          <span class="font-body-md text-body-md">Dashboard</span>
+        </a>
+        <!-- Anggota -->
+        <a
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="anggota.html"
+        >
+          <span
+            class="material-symbols-outlined group-hover:text-primary transition-colors"
+            >group</span
+          >
+          <span class="font-body-md text-body-md">Anggota</span>
+        </a>
+        <!-- Transaksi (Active) -->
+        <a
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary dark:text-primary bg-primary-container/10 border-l-4 border-primary font-bold scale-95 transition-transform"
+          href="transaksi.html"
+        >
+          <span
+            class="material-symbols-outlined"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >receipt_long</span
+          >
+          <span class="font-body-md text-body-md">Transaksi</span>
+        </a>
+        <!-- Inventaris -->
+        <a
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="inventaris.html"
+        >
+          <span
+            class="material-symbols-outlined group-hover:text-primary transition-colors"
+            >inventory_2</span
+          >
+          <span class="font-body-md text-body-md">Inventaris</span>
+        </a>
+        <!-- Laporan -->
+        <a
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined group-hover:text-primary transition-colors"
+            >assessment</span
+          >
+          <span class="font-body-md text-body-md">Laporan</span>
+        </a>
+        <div class="h-px bg-outline-variant/50 my-2 mx-2"></div>
+        <!-- Pengguna & Peran -->
+        <a
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined group-hover:text-primary transition-colors"
+            >manage_accounts</span
+          >
+          <span class="font-body-md text-body-md">Pengguna &amp; Peran</span>
+        </a>
+        <!-- Pengaturan -->
+        <a
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined group-hover:text-primary transition-colors"
+            >settings</span
+          >
+          <span class="font-body-md text-body-md">Pengaturan</span>
+        </a>
+        <!-- Audit Log -->
+        <a
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined group-hover:text-primary transition-colors"
+            >history_edu</span
+          >
+          <span class="font-body-md text-body-md">Audit Log</span>
+        </a>
+      </div>
+      <!-- Footer Actions -->
+      <div
+        class="mt-auto pt-4 flex flex-col gap-1 border-t border-outline-variant/50"
+      >
+        <button
+          class="w-full py-3 px-4 bg-surface-container-high hover:bg-surface-container-highest text-primary font-label-md text-label-md rounded-lg flex justify-center items-center gap-2 transition-colors glow-primary-hover"
+        >
+          <span class="material-symbols-outlined text-[18px]"
+            >shopping_bag</span
+          >
+          Buka Marketplace
+        </button>
+        <a
+          class="flex items-center gap-3 px-4 py-3 mt-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors group"
+          href="#"
+        >
+          <span class="material-symbols-outlined group-hover:text-primary"
+            >help_outline</span
+          >
+          <span class="font-body-md text-body-md">Bantuan</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 rounded-lg text-error hover:bg-error-container/20 transition-colors group"
+          href="#"
+        >
+          <span class="material-symbols-outlined">logout</span>
+          <span class="font-body-md text-body-md">Keluar</span>
+        </a>
+      </div>
+    </nav>
+    <!-- Main Content Wrapper -->
+    <div
+      class="flex-1 flex flex-col min-h-screen relative w-full md:ml-sidebar-width bg-background"
+    >
+      <!-- TopAppBar -->
+      <header
+        class="fixed top-0 right-0 w-full md:w-[calc(100%-280px)] z-40 bg-surface/90 backdrop-blur-md dark:bg-surface/90 border-b border-outline-variant dark:border-outline-variant flex justify-between items-center h-16 px-gutter transition-all"
+      >
+        <!-- Mobile Menu Toggle (Hidden on Desktop) -->
+        <button
+          class="md:hidden p-2 text-on-surface-variant hover:text-primary transition-colors"
+        >
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+        <!-- Search Area (on_left) -->
+        <div class="flex-1 max-w-md hidden md:block">
+          <div class="relative group">
+            <span
+              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors"
+              >search</span
+            >
+            <input
+              class="w-full bg-surface-container-low border border-outline-variant rounded-full py-2 pl-10 pr-4 text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-on-surface-variant/70"
+              placeholder="Cari transaksi, anggota..."
+              type="text"
+            />
+          </div>
+        </div>
+        <!-- Trailing Actions -->
+        <div class="flex items-center gap-2 md:gap-4 ml-auto">
+          <button
+            class="p-2 text-on-surface-variant dark:text-on-surface-variant hover:text-secondary-fixed dark:hover:text-secondary-fixed transition-colors relative"
+          >
+            <span class="material-symbols-outlined">notifications</span>
+            <span
+              class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full animate-pulse"
+            ></span>
+          </button>
+          <button
+            class="p-2 text-on-surface-variant dark:text-on-surface-variant hover:text-secondary-fixed dark:hover:text-secondary-fixed transition-colors"
+          >
+            <span class="material-symbols-outlined">apps</span>
+          </button>
+          <div
+            class="h-8 w-px bg-outline-variant/50 mx-1 hidden md:block"
+          ></div>
+          <button
+            class="flex items-center gap-2 p-1 rounded-full hover:bg-surface-container-highest transition-colors"
+          >
+            <img
+              alt="Profil Pengguna"
+              class="w-8 h-8 rounded-full border border-outline-variant object-cover"
+              data-alt="A professional headshot of an Indonesian cooperative manager, smiling subtly, wearing a neat uniform, set against a dark, futuristic background with subtle neon purple lighting accents."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7mOMwh9B-B_z8MRDS0myYgQ0XnqrVfcZfPtAErgIC2ep1sV_mCMrjFo9uKYy_S0INt90Fp8ZfsMkn-Swfdz0iQknhDpLeEx3sJZ-zJgjoanyRFbmcGBtImHGDdH6XxqQX_J_4t6-Yor3Y1QPR-zfqubzNPunNQigAlz9gZbm5L57cxfVVQ2LvtxbunEawiPGhoWmU9RsusJ-S3p2nt8140_ajasFXm10O5XsoUqwxh6-R3KxrvseTPvfUIsSi0OndTxQnOgpzo68x"
+            />
+            <span
+              class="material-symbols-outlined text-on-surface-variant hidden md:block"
+              >expand_more</span
+            >
+          </button>
+        </div>
+      </header>
+      <!-- Canvas (Main Content Area) -->
+      <main
+        class="flex-1 pt-16 px-4 md:px-container-padding pb-10 flex flex-col gap-stack-lg max-w-7xl mx-auto w-full mt-stack-md"
+      >
+        <!-- Page Header & Actions -->
+        <div
+          class="flex flex-col md:flex-row md:items-end justify-between gap-4 mt-4"
+        >
+          <div>
+            <h1
+              class="font-headline-lg text-headline-lg md:font-display-lg md:text-display-lg text-on-surface mb-1"
+            >
+              Transaksi
+            </h1>
+            <p class="font-body-md text-body-md text-on-surface-variant">
+              Kelola arus kas, simpanan, dan pinjaman Koperasi Harapan Baru.
+            </p>
+          </div>
+          <div class="flex items-center gap-3">
+            <button
+              class="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-outline-variant bg-surface-container-low hover:bg-surface-container-highest text-on-surface font-label-md text-label-md transition-all"
+            >
+              <span class="material-symbols-outlined text-[18px]"
+                >download</span
+              >
+              Ekspor CSV
+            </button>
+            <button
+              class="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md transition-all glow-primary-hover font-bold"
+            >
+              <span class="material-symbols-outlined text-[18px]">add</span>
+              Tambah Transaksi Baru
+            </button>
+          </div>
+        </div>
+        <!-- Filter Bar (Glassmorphic vibe) -->
+        <div
+          class="bg-surface-container-low/80 backdrop-blur-sm border border-outline-variant rounded-xl p-4 flex flex-col md:flex-row gap-4 items-center justify-between"
+        >
+          <div class="flex flex-wrap items-center gap-4 w-full md:w-auto">
+            <!-- Date Range -->
+            <div
+              class="flex items-center gap-2 bg-surface-container p-1 rounded-lg border border-outline-variant/50"
+            >
+              <input
+                class="bg-transparent border-none text-body-sm font-body-sm text-on-surface focus:ring-0 [&amp;::-webkit-calendar-picker-indicator]:invert-[0.8]"
+                type="date"
+                value="2023-10-01"
+              />
+              <span class="text-on-surface-variant">-</span>
+              <input
+                class="bg-transparent border-none text-body-sm font-body-sm text-on-surface focus:ring-0 [&amp;::-webkit-calendar-picker-indicator]:invert-[0.8]"
+                type="date"
+                value="2023-10-31"
+              />
+            </div>
+            <!-- Tipe Filter -->
+            <select
+              class="bg-surface-container border border-outline-variant text-on-surface text-body-sm font-body-sm rounded-lg focus:ring-primary focus:border-primary block p-2.5"
+            >
+              <option value="">Semua Tipe</option>
+              <option value="kredit">Kredit (Masuk)</option>
+              <option value="debit">Debit (Keluar)</option>
+            </select>
+          </div>
+          <!-- Quick Search within Table -->
+          <div class="relative w-full md:w-64">
+            <span
+              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]"
+              >search</span
+            >
+            <input
+              class="w-full bg-surface border border-outline-variant rounded-lg py-2 pl-9 pr-3 text-body-sm font-body-sm text-on-surface focus:ring-1 focus:ring-primary focus:border-primary transition-all"
+              placeholder="Cari ID atau Keterangan..."
+              type="text"
+            />
+          </div>
+        </div>
+        <!-- Data Grid / Table Card -->
+        <div
+          class="bg-surface-container-low border border-outline-variant rounded-2xl overflow-hidden shadow-lg shadow-black/20"
+        >
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr
+                  class="border-b border-outline-variant bg-surface-container-highest/50"
+                >
+                  <th
+                    class="py-4 px-6 font-label-md text-label-md uppercase text-on-surface-variant whitespace-nowrap"
+                  >
+                    ID Transaksi
+                  </th>
+                  <th
+                    class="py-4 px-6 font-label-md text-label-md uppercase text-on-surface-variant whitespace-nowrap"
+                  >
+                    Tanggal
+                  </th>
+                  <th
+                    class="py-4 px-6 font-label-md text-label-md uppercase text-on-surface-variant whitespace-nowrap"
+                  >
+                    Keterangan
+                  </th>
+                  <th
+                    class="py-4 px-6 font-label-md text-label-md uppercase text-on-surface-variant whitespace-nowrap"
+                  >
+                    Tipe
+                  </th>
+                  <th
+                    class="py-4 px-6 font-label-md text-label-md uppercase text-on-surface-variant text-right whitespace-nowrap"
+                  >
+                    Nominal (Rp)
+                  </th>
+                  <th
+                    class="py-4 px-6 font-label-md text-label-md uppercase text-on-surface-variant text-center whitespace-nowrap"
+                  >
+                    Status
+                  </th>
+                  <th
+                    class="py-4 px-6 font-label-md text-label-md uppercase text-on-surface-variant text-center whitespace-nowrap"
+                  >
+                    Aksi
+                  </th>
+                </tr>
+              </thead>
+              <tbody
+                class="font-body-sm text-body-sm text-on-surface divide-y divide-outline-variant/30"
+              >
+                <!-- Row 1: Kredit / Berhasil -->
+                <tr
+                  class="hover:bg-surface-container-highest transition-colors group cursor-default"
+                >
+                  <td
+                    class="py-4 px-6 font-mono text-on-surface-variant group-hover:text-primary transition-colors"
+                  >
+                    TRX-0992
+                  </td>
+                  <td
+                    class="py-4 px-6 whitespace-nowrap text-on-surface-variant"
+                  >
+                    24 Okt 2023, 14:30
+                  </td>
+                  <td class="py-4 px-6">
+                    <p class="font-bold text-on-surface">
+                      Simpanan Wajib - Budi Santoso
+                    </p>
+                    <p class="text-on-surface-variant text-[12px] mt-0.5">
+                      Anggota: AGT-012
+                    </p>
+                  </td>
+                  <td class="py-4 px-6">
+                    <span
+                      class="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-surface-container border border-outline-variant/50 text-secondary font-label-md text-[11px] uppercase tracking-wider"
+                    >
+                      <span class="material-symbols-outlined text-[14px]"
+                        >south_west</span
+                      >
+                      Kredit
+                    </span>
+                  </td>
+                  <td
+                    class="py-4 px-6 text-right font-mono font-bold text-secondary"
+                  >
+                    +500.000
+                  </td>
+                  <td class="py-4 px-6 text-center">
+                    <span
+                      class="inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-secondary-fixed/10 text-secondary-fixed font-label-md text-[11px] uppercase border border-secondary-fixed/20 shadow-[0_0_10px_rgba(111,251,190,0.1)]"
+                    >
+                      Berhasil
+                    </span>
+                  </td>
+                  <td class="py-4 px-6 text-center">
+                    <button
+                      class="p-1.5 text-on-surface-variant hover:text-primary transition-colors rounded-lg hover:bg-surface-container"
+                    >
+                      <span class="material-symbols-outlined text-[20px]"
+                        >more_vert</span
+                      >
+                    </button>
+                  </td>
+                </tr>
+                <!-- Row 2: Debit / Berhasil -->
+                <tr
+                  class="hover:bg-surface-container-highest transition-colors group cursor-default"
+                >
+                  <td
+                    class="py-4 px-6 font-mono text-on-surface-variant group-hover:text-primary transition-colors"
+                  >
+                    TRX-0991
+                  </td>
+                  <td
+                    class="py-4 px-6 whitespace-nowrap text-on-surface-variant"
+                  >
+                    24 Okt 2023, 10:15
+                  </td>
+                  <td class="py-4 px-6">
+                    <p class="font-bold text-on-surface">
+                      Pencairan Pinjaman Modal
+                    </p>
+                    <p class="text-on-surface-variant text-[12px] mt-0.5">
+                      Siti Aminah (AGT-045)
+                    </p>
+                  </td>
+                  <td class="py-4 px-6">
+                    <span
+                      class="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-surface-container border border-outline-variant/50 text-error font-label-md text-[11px] uppercase tracking-wider"
+                    >
+                      <span class="material-symbols-outlined text-[14px]"
+                        >north_east</span
+                      >
+                      Debit
+                    </span>
+                  </td>
+                  <td class="py-4 px-6 text-right font-mono text-on-surface">
+                    -5.000.000
+                  </td>
+                  <td class="py-4 px-6 text-center">
+                    <span
+                      class="inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-secondary-fixed/10 text-secondary-fixed font-label-md text-[11px] uppercase border border-secondary-fixed/20 shadow-[0_0_10px_rgba(111,251,190,0.1)]"
+                    >
+                      Berhasil
+                    </span>
+                  </td>
+                  <td class="py-4 px-6 text-center">
+                    <button
+                      class="p-1.5 text-on-surface-variant hover:text-primary transition-colors rounded-lg hover:bg-surface-container"
+                    >
+                      <span class="material-symbols-outlined text-[20px]"
+                        >more_vert</span
+                      >
+                    </button>
+                  </td>
+                </tr>
+                <!-- Row 3: Kredit / Pending -->
+                <tr
+                  class="hover:bg-surface-container-highest transition-colors group cursor-default"
+                >
+                  <td
+                    class="py-4 px-6 font-mono text-on-surface-variant group-hover:text-primary transition-colors"
+                  >
+                    TRX-0990
+                  </td>
+                  <td
+                    class="py-4 px-6 whitespace-nowrap text-on-surface-variant"
+                  >
+                    23 Okt 2023, 16:45
+                  </td>
+                  <td class="py-4 px-6">
+                    <p class="font-bold text-on-surface">
+                      Pembayaran Cicilan Pinjaman
+                    </p>
+                    <p class="text-on-surface-variant text-[12px] mt-0.5">
+                      Transfer Bank - Menunggu Verifikasi
+                    </p>
+                  </td>
+                  <td class="py-4 px-6">
+                    <span
+                      class="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-surface-container border border-outline-variant/50 text-secondary font-label-md text-[11px] uppercase tracking-wider"
+                    >
+                      <span class="material-symbols-outlined text-[14px]"
+                        >south_west</span
+                      >
+                      Kredit
+                    </span>
+                  </td>
+                  <td
+                    class="py-4 px-6 text-right font-mono font-bold text-secondary"
+                  >
+                    +1.200.000
+                  </td>
+                  <td class="py-4 px-6 text-center">
+                    <span
+                      class="inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-outline-variant/30 text-on-surface-variant font-label-md text-[11px] uppercase border border-outline-variant/50"
+                    >
+                      <span
+                        class="material-symbols-outlined text-[12px] mr-1 animate-spin"
+                        >sync</span
+                      >
+                      Pending
+                    </span>
+                  </td>
+                  <td class="py-4 px-6 text-center">
+                    <button
+                      class="p-1.5 text-on-surface-variant hover:text-primary transition-colors rounded-lg hover:bg-surface-container"
+                    >
+                      <span class="material-symbols-outlined text-[20px]"
+                        >more_vert</span
+                      >
+                    </button>
+                  </td>
+                </tr>
+                <!-- Row 4: Debit / Berhasil -->
+                <tr
+                  class="hover:bg-surface-container-highest transition-colors group cursor-default"
+                >
+                  <td
+                    class="py-4 px-6 font-mono text-on-surface-variant group-hover:text-primary transition-colors"
+                  >
+                    TRX-0989
+                  </td>
+                  <td
+                    class="py-4 px-6 whitespace-nowrap text-on-surface-variant"
+                  >
+                    22 Okt 2023, 09:00
+                  </td>
+                  <td class="py-4 px-6">
+                    <p class="font-bold text-on-surface">
+                      Pembelian Pupuk Subsidi
+                    </p>
+                    <p class="text-on-surface-variant text-[12px] mt-0.5">
+                      Vendor: PT Agro Tani
+                    </p>
+                  </td>
+                  <td class="py-4 px-6">
+                    <span
+                      class="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-surface-container border border-outline-variant/50 text-error font-label-md text-[11px] uppercase tracking-wider"
+                    >
+                      <span class="material-symbols-outlined text-[14px]"
+                        >north_east</span
+                      >
+                      Debit
+                    </span>
+                  </td>
+                  <td class="py-4 px-6 text-right font-mono text-on-surface">
+                    -12.500.000
+                  </td>
+                  <td class="py-4 px-6 text-center">
+                    <span
+                      class="inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-secondary-fixed/10 text-secondary-fixed font-label-md text-[11px] uppercase border border-secondary-fixed/20 shadow-[0_0_10px_rgba(111,251,190,0.1)]"
+                    >
+                      Berhasil
+                    </span>
+                  </td>
+                  <td class="py-4 px-6 text-center">
+                    <button
+                      class="p-1.5 text-on-surface-variant hover:text-primary transition-colors rounded-lg hover:bg-surface-container"
+                    >
+                      <span class="material-symbols-outlined text-[20px]"
+                        >more_vert</span
+                      >
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Pagination Footer -->
+          <div
+            class="border-t border-outline-variant p-4 flex items-center justify-between bg-surface-container-low"
+          >
+            <span class="text-body-sm font-body-sm text-on-surface-variant"
+              >Menampilkan 1-4 dari 128 transaksi</span
+            >
+            <div class="flex items-center gap-1">
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled=""
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >chevron_left</span
+                >
+              </button>
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded bg-primary/10 text-primary border border-primary/30 font-label-md text-label-md"
+              >
+                1
+              </button>
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded border border-transparent text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors font-label-md text-label-md"
+              >
+                2
+              </button>
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded border border-transparent text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors font-label-md text-label-md"
+              >
+                3
+              </button>
+              <span class="text-on-surface-variant px-1">...</span>
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >chevron_right</span
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
