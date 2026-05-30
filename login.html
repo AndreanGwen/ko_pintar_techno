@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html class="dark" lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Login - KoPintar</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-primary": "#842bd2",
+              "secondary-fixed": "#6ffbbe",
+              "on-primary": "#490080",
+              surface: "#131313",
+              tertiary: "#c0c1ff",
+              "surface-container-low": "#1c1b1b",
+              "on-surface-variant": "#cfc2d6",
+              "on-tertiary-fixed-variant": "#2f2ebe",
+              "primary-fixed-dim": "#ddb7ff",
+              primary: "#ddb7ff",
+              "surface-container": "#201f1f",
+              "inverse-surface": "#e5e2e1",
+              "surface-dim": "#131313",
+              "surface-container-highest": "#353534",
+              "tertiary-fixed": "#e1e0ff",
+              "on-primary-fixed": "#2c0051",
+              "on-tertiary-container": "#0d0096",
+              "tertiary-fixed-dim": "#c0c1ff",
+              "inverse-on-surface": "#313030",
+              "on-primary-container": "#400071",
+              "surface-container-high": "#2a2a2a",
+              "outline-variant": "#4d4354",
+              "on-secondary-fixed-variant": "#005236",
+              "on-tertiary": "#1000a9",
+              "surface-container-lowest": "#0e0e0e",
+              "error-container": "#93000a",
+              error: "#ffb4ab",
+              "secondary-fixed-dim": "#4edea3",
+              "on-tertiary-fixed": "#07006c",
+              "on-background": "#e5e2e1",
+              "primary-container": "#b76dff",
+              outline: "#988d9f",
+              "tertiary-container": "#8083ff",
+              background: "#131313",
+              "on-secondary-container": "#00311f",
+              "secondary-container": "#00a572",
+              "surface-bright": "#393939",
+              "on-primary-fixed-variant": "#6900b3",
+              "on-secondary": "#003824",
+              "on-secondary-fixed": "#002113",
+              "on-surface": "#e5e2e1",
+              "on-error": "#690005",
+              "on-error-container": "#ffdad6",
+              "surface-variant": "#353534",
+              "surface-tint": "#ddb7ff",
+              secondary: "#4edea3",
+              "primary-fixed": "#f0dbff",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "stack-sm": "0.5rem",
+              gutter: "1.5rem",
+              "sidebar-width": "280px",
+              "stack-lg": "2rem",
+              "container-padding": "2rem",
+              "stack-md": "1rem",
+            },
+            fontFamily: {
+              "label-md": ["Inter"],
+              "headline-lg": ["Plus Jakarta Sans"],
+              "body-lg": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Plus Jakarta Sans"],
+              "body-sm": ["Plus Jakarta Sans"],
+              "display-lg": ["Plus Jakarta Sans"],
+              "body-md": ["Plus Jakarta Sans"],
+              "headline-md": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "label-md": [
+                "12px",
+                { lineHeight: "1", letterSpacing: "0.05em", fontWeight: "600" },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+              "headline-lg-mobile": [
+                "28px",
+                { lineHeight: "1.2", fontWeight: "600" },
+              ],
+              "body-sm": ["14px", { lineHeight: "1.5", fontWeight: "400" }],
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "1.1",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+              "headline-md": ["24px", { lineHeight: "1.3", fontWeight: "600" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .bg-geometric-pattern {
+        background-image: radial-gradient(
+            circle at 1px 1px,
+            rgba(77, 67, 84, 0.2) 1px,
+            transparent 0
+          ),
+          linear-gradient(
+            to right,
+            rgba(19, 19, 19, 1) 0%,
+            rgba(19, 19, 19, 0.8) 50%,
+            rgba(19, 19, 19, 1) 100%
+          );
+        background-size: 24px 24px, 100% 100%;
+      }
+      .neon-purple-glow {
+        box-shadow: 0 0 20px rgba(183, 109, 255, 0.15),
+          inset 0 0 10px rgba(183, 109, 255, 0.05);
+        border-color: rgba(183, 109, 255, 0.4);
+      }
+      .input-glow-focus:focus-within {
+        box-shadow: 0 0 12px rgba(183, 109, 255, 0.2);
+        border-color: #b76dff;
+      }
+      .btn-emerald-glow:hover {
+        box-shadow: 0 0 15px rgba(78, 222, 163, 0.4);
+        transform: translateY(-1px);
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-background min-h-screen flex items-center justify-center bg-geometric-pattern relative overflow-hidden p-4 font-body-md text-body-md antialiased"
+  >
+    <div
+      class="absolute top-[-10%] left-[-5%] w-96 h-96 bg-primary-container rounded-full mix-blend-screen filter blur-[150px] opacity-20 pointer-events-none"
+    ></div>
+    <div
+      class="absolute bottom-[-15%] right-[-5%] w-[30rem] h-[30rem] bg-secondary-container rounded-full mix-blend-screen filter blur-[150px] opacity-10 pointer-events-none"
+    ></div>
+    <main
+      class="w-full max-w-[420px] bg-surface-container-low rounded-xl p-8 md:p-10 z-10 border border-outline-variant neon-purple-glow backdrop-blur-md relative shadow-2xl"
+    >
+      <div class="flex flex-col items-center mb-8">
+        <div
+          class="w-14 h-14 flex items-center justify-center bg-surface border border-outline-variant rounded-xl mb-5 shadow-lg relative overflow-hidden group"
+        >
+          <div
+            class="absolute inset-0 bg-primary/10 group-hover:bg-primary/20 transition-colors"
+          ></div>
+          <span
+            class="material-symbols-outlined text-[32px] text-primary relative z-10"
+            style="font-variation-settings: 'FILL' 1"
+            >widgets</span
+          >
+        </div>
+        <h1
+          class="font-headline-md text-headline-md text-on-surface mb-2 tracking-tight"
+        >
+          KoPintar
+        </h1>
+        <p
+          class="font-body-sm text-body-sm text-on-surface-variant text-center max-w-[280px]"
+        >
+          Sistem manajemen koperasi terpadu untuk Koperasi Harapan Baru.
+        </p>
+      </div>
+      <form
+        class="space-y-5"
+        onsubmit="event.preventDefault(); window.location.href='dashboard.html';"
+      >
+        <div class="flex flex-col space-y-2">
+          <label
+            class="font-label-md text-label-md text-on-surface uppercase text-opacity-80"
+            for="identity"
+            >Email atau Username</label
+          >
+          <div
+            class="relative input-glow-focus rounded-lg border border-outline-variant bg-surface transition-all duration-300"
+          >
+            <div
+              class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none"
+            >
+              <span
+                class="material-symbols-outlined text-on-surface-variant text-[20px]"
+                >person</span
+              >
+            </div>
+            <input
+              class="block w-full bg-transparent border-none text-on-surface font-body-md text-body-md pl-11 pr-4 py-3 focus:ring-0 placeholder:text-outline focus:outline-none rounded-lg"
+              id="identity"
+              placeholder="ID Anggota atau Email"
+              required=""
+              type="text"
+            />
+          </div>
+        </div>
+        <div class="flex flex-col space-y-2">
+          <label
+            class="font-label-md text-label-md text-on-surface uppercase text-opacity-80"
+            for="password"
+            >Password</label
+          >
+          <div
+            class="relative input-glow-focus rounded-lg border border-outline-variant bg-surface transition-all duration-300"
+          >
+            <div
+              class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none"
+            >
+              <span
+                class="material-symbols-outlined text-on-surface-variant text-[20px]"
+                >lock</span
+              >
+            </div>
+            <input
+              class="block w-full bg-transparent border-none text-on-surface font-body-md text-body-md pl-11 pr-11 py-3 focus:ring-0 placeholder:text-outline focus:outline-none rounded-lg"
+              id="password"
+              placeholder="••••••••"
+              required=""
+              type="password"
+            />
+            <button
+              class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-on-surface-variant hover:text-primary transition-colors focus:outline-none"
+              onclick="togglePassword()"
+              type="button"
+            >
+              <span
+                class="material-symbols-outlined text-[20px]"
+                id="toggle-icon"
+                >visibility</span
+              >
+            </button>
+          </div>
+        </div>
+        <div class="flex items-center justify-between pt-1">
+          <div class="flex items-center group cursor-pointer">
+            <div class="relative flex items-center">
+              <input
+                class="h-4 w-4 rounded border-outline-variant bg-surface text-secondary focus:ring-secondary/50 focus:ring-offset-0 focus:ring-2 cursor-pointer transition-colors"
+                id="remember-me"
+                name="remember-me"
+                type="checkbox"
+              />
+            </div>
+            <label
+              class="ml-2.5 block font-body-sm text-body-sm text-on-surface-variant group-hover:text-on-surface transition-colors cursor-pointer select-none"
+              for="remember-me"
+            >
+              Ingat Saya
+            </label>
+          </div>
+          <a
+            class="font-label-md text-label-md text-primary hover:text-primary-fixed transition-colors"
+            href="#"
+          >
+            Lupa Password?
+          </a>
+        </div>
+        <div class="pt-4">
+          <button
+            class="w-full flex justify-center items-center py-3.5 px-4 border border-secondary rounded-lg text-on-secondary-fixed bg-secondary hover:bg-secondary-fixed transition-all duration-300 font-label-md text-label-md uppercase btn-emerald-glow"
+            type="submit"
+          >
+            Masuk
+            <span class="material-symbols-outlined ml-2 text-[18px]"
+              >login</span
+            >
+          </button>
+        </div>
+      </form>
+      <div class="mt-8 mb-6 relative">
+        <div class="absolute inset-0 flex items-center">
+          <div class="w-full border-t border-outline-variant/60"></div>
+        </div>
+        <div class="relative flex justify-center text-sm">
+          <span
+            class="px-3 bg-surface-container-low text-on-surface-variant font-body-sm text-body-sm"
+            >Belum terdaftar?</span
+          >
+        </div>
+      </div>
+      <div class="text-center">
+        <a
+          class="inline-flex items-center justify-center w-full py-3 px-4 border border-outline-variant rounded-lg text-on-surface bg-surface hover:bg-surface-container-highest transition-colors font-label-md text-label-md group"
+          href="register.html"
+        >
+          Daftar Koperasi Baru
+          <span
+            class="material-symbols-outlined ml-2 text-[18px] text-on-surface-variant group-hover:text-on-surface transition-colors"
+            >arrow_forward</span
+          >
+        </a>
+      </div>
+    </main>
+    <script>
+      function togglePassword() {
+        const passwordInput = document.getElementById("password");
+        const toggleIcon = document.getElementById("toggle-icon");
+
+        if (passwordInput.type === "password") {
+          passwordInput.type = "text";
+          toggleIcon.textContent = "visibility_off";
+        } else {
+          passwordInput.type = "password";
+          toggleIcon.textContent = "visibility";
+        }
+      }
+    </script>
+  </body>
+</html>

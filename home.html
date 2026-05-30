@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>KoPintar - Solusi Koperasi Desa Digital</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-primary": "#842bd2",
+              "secondary-fixed": "#6ffbbe",
+              "on-primary": "#490080",
+              surface: "#131313",
+              tertiary: "#c0c1ff",
+              "surface-container-low": "#1c1b1b",
+              "on-surface-variant": "#cfc2d6",
+              "on-tertiary-fixed-variant": "#2f2ebe",
+              "primary-fixed-dim": "#ddb7ff",
+              primary: "#ddb7ff",
+              "surface-container": "#201f1f",
+              "inverse-surface": "#e5e2e1",
+              "surface-dim": "#131313",
+              "surface-container-highest": "#353534",
+              "tertiary-fixed": "#e1e0ff",
+              "on-primary-fixed": "#2c0051",
+              "on-tertiary-container": "#0d0096",
+              "tertiary-fixed-dim": "#c0c1ff",
+              "inverse-on-surface": "#313030",
+              "on-primary-container": "#400071",
+              "surface-container-high": "#2a2a2a",
+              "outline-variant": "#4d4354",
+              "on-secondary-fixed-variant": "#005236",
+              "on-tertiary": "#1000a9",
+              "surface-container-lowest": "#0e0e0e",
+              "error-container": "#93000a",
+              error: "#ffb4ab",
+              "secondary-fixed-dim": "#4edea3",
+              "on-tertiary-fixed": "#07006c",
+              "on-background": "#e5e2e1",
+              "primary-container": "#b76dff",
+              outline: "#988d9f",
+              "tertiary-container": "#8083ff",
+              background: "#131313",
+              "on-secondary-container": "#00311f",
+              "secondary-container": "#00a572",
+              "surface-bright": "#393939",
+              "on-primary-fixed-variant": "#6900b3",
+              "on-secondary": "#003824",
+              "on-secondary-fixed": "#002113",
+              "on-surface": "#e5e2e1",
+              "on-error": "#690005",
+              "on-error-container": "#ffdad6",
+              "surface-variant": "#353534",
+              "surface-tint": "#ddb7ff",
+              secondary: "#4edea3",
+              "primary-fixed": "#f0dbff",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+              "2xl": "1rem",
+            },
+            spacing: {
+              "stack-sm": "0.5rem",
+              gutter: "1.5rem",
+              "sidebar-width": "280px",
+              "stack-lg": "2rem",
+              "container-padding": "2rem",
+              "stack-md": "1rem",
+            },
+            fontFamily: {
+              "label-md": ["Inter", "sans-serif"],
+              "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+              "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+              "headline-lg-mobile": ["Plus Jakarta Sans", "sans-serif"],
+              "body-sm": ["Plus Jakarta Sans", "sans-serif"],
+              "display-lg": ["Plus Jakarta Sans", "sans-serif"],
+              "body-md": ["Plus Jakarta Sans", "sans-serif"],
+              "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+            },
+            fontSize: {
+              "label-md": [
+                "12px",
+                { lineHeight: "1", letterSpacing: "0.05em", fontWeight: "600" },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+              "headline-lg-mobile": [
+                "28px",
+                { lineHeight: "1.2", fontWeight: "600" },
+              ],
+              "body-sm": ["14px", { lineHeight: "1.5", fontWeight: "400" }],
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "1.1",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+              "headline-md": ["24px", { lineHeight: "1.3", fontWeight: "600" }],
+            },
+            animation: {
+              "glow-pulse": "glow 3s ease-in-out infinite alternate",
+              float: "float 6s ease-in-out infinite",
+            },
+            keyframes: {
+              glow: {
+                "0%": { opacity: 0.5, transform: "scale(1)" },
+                "100%": { opacity: 0.8, transform: "scale(1.05)" },
+              },
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-20px)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #09090b; /* Deepest black for canvas */
+        color: #e5e2e1;
+      }
+      .glass-panel {
+        background: rgba(24, 24, 27, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid #27272a;
+      }
+      .neon-glow:hover {
+        box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+        border-color: rgba(221, 183, 255, 0.3);
+      }
+      .bg-grid-pattern {
+        background-size: 40px 40px;
+        background-image: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.03) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.03) 1px,
+            transparent 1px
+          );
+      }
+    </style>
+  </head>
+  <body
+    class="antialiased min-h-screen flex flex-col relative overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container"
+  >
+    <!-- Ambient Glow Backgrounds -->
+    <div
+      class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary-container/20 rounded-full blur-[120px] mix-blend-screen pointer-events-none -z-10 animate-glow-pulse"
+    ></div>
+    <div
+      class="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-secondary-container/10 rounded-full blur-[100px] mix-blend-screen pointer-events-none -z-10"
+    ></div>
+    <div
+      class="absolute inset-0 bg-grid-pattern pointer-events-none -z-20"
+    ></div>
+    <!-- Public Header (Simplified for Landing Page) -->
+    <header
+      class="fixed top-0 w-full z-50 glass-panel border-b border-[#27272A]/50"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary-container to-inverse-primary flex items-center justify-center shadow-[0_0_15px_rgba(168,85,247,0.4)]"
+          >
+            <span
+              class="material-symbols-outlined text-white"
+              style="font-variation-settings: 'FILL' 1"
+              >widgets</span
+            >
+          </div>
+          <span
+            class="font-headline-md text-headline-md font-bold text-primary tracking-tight"
+            >KoPintar</span
+          >
+        </div>
+        <nav class="hidden md:flex items-center gap-8">
+          <a
+            class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+            href="#fitur"
+            >Fitur Utama</a
+          >
+          <a
+            class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+            href="#sektor"
+            >Modul Sektor</a
+          >
+          <a
+            class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors"
+            href="#teknologi"
+            >Teknologi</a
+          >
+        </nav>
+        <div class="flex items-center gap-4">
+          <a
+            class="hidden md:block font-label-md text-label-md text-on-surface hover:text-primary transition-colors"
+            href="login.html"
+            >Masuk</a
+          >
+          <a
+            class="px-6 py-2.5 rounded-lg bg-primary-container text-white font-label-md text-label-md hover:bg-inverse-primary transition-all duration-300 shadow-[0_0_15px_rgba(168,85,247,0.2)] hover:shadow-[0_0_20px_rgba(168,85,247,0.5)]"
+            href="#"
+          >
+            Coba Demo
+          </a>
+        </div>
+      </div>
+    </header>
+    <main class="flex-grow pt-32 pb-24 px-6 relative z-10">
+      <!-- Hero Section -->
+      <section
+        class="max-w-7xl mx-auto text-center mt-12 mb-32 flex flex-col items-center"
+      >
+        <div
+          class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 mb-8 backdrop-blur-sm"
+        >
+          <span
+            class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_8px_#4edea3]"
+          ></span>
+          <span
+            class="font-label-md text-label-md text-primary uppercase tracking-wider"
+            >Versi 2.0 Tersedia</span
+          >
+        </div>
+        <h1
+          class="font-display-lg text-display-lg text-transparent bg-clip-text bg-gradient-to-r from-white via-primary-fixed to-on-surface-variant max-w-4xl mx-auto mb-6 drop-shadow-sm"
+        >
+          Solusi Pintar untuk <br />Koperasi Desa Indonesia
+        </h1>
+        <p
+          class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-10 leading-relaxed"
+        >
+          Platform manajemen multi-koperasi modular yang menggabungkan nilai
+          gotong-royong tradisional dengan teknologi finansial berkinerja
+          tinggi.
+        </p>
+        <div
+          class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
+        >
+          <a
+            class="w-full sm:w-auto px-8 py-4 rounded-xl bg-primary-container text-white font-label-md text-label-md hover:bg-inverse-primary transition-all duration-300 shadow-[0_0_20px_rgba(168,85,247,0.3)] hover:shadow-[0_0_30px_rgba(168,85,247,0.6)] flex items-center justify-center gap-2"
+            href="#mulai"
+          >
+            Mulai Sekarang
+            <span class="material-symbols-outlined text-[18px]"
+              >arrow_forward</span
+            >
+          </a>
+          <a
+            class="w-full sm:w-auto px-8 py-4 rounded-xl border border-secondary text-secondary font-label-md text-label-md hover:bg-secondary/10 transition-all duration-300 flex items-center justify-center gap-2"
+            href="#pelajari"
+          >
+            Pelajari Lebih Lanjut
+          </a>
+        </div>
+      </section>
+      <!-- Features Bento Grid -->
+      <section class="max-w-7xl mx-auto scroll-mt-32" id="fitur">
+        <div class="mb-12">
+          <h2 class="font-headline-lg text-headline-lg text-white mb-2">
+            Arsitektur Modular
+          </h2>
+          <p class="font-body-md text-body-md text-on-surface-variant">
+            Pilih modul yang sesuai dengan kebutuhan spesifik koperasi Anda.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Core System (Spans 2 cols) -->
+          <div
+            class="md:col-span-2 bg-[#18181B] border border-[#27272A] rounded-2xl p-8 flex flex-col justify-between group neon-glow transition-all duration-500 overflow-hidden relative"
+          >
+            <div
+              class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-[60px] group-hover:bg-primary/10 transition-all"
+            ></div>
+            <div>
+              <div
+                class="w-14 h-14 rounded-xl bg-surface border border-[#27272A] flex items-center justify-center mb-6 shadow-inner"
+              >
+                <span
+                  class="material-symbols-outlined text-primary text-3xl"
+                  style="font-variation-settings: 'FILL' 1"
+                  >account_balance</span
+                >
+              </div>
+              <h3 class="font-headline-md text-headline-md text-white mb-3">
+                Sistem Inti Koperasi
+              </h3>
+              <p
+                class="font-body-md text-body-md text-on-surface-variant max-w-md"
+              >
+                Fondasi utama untuk manajemen keanggotaan, akuntansi dasar,
+                simpan pinjam, dan pelaporan keuangan terpusat. Dilengkapi
+                dengan audit log komprehensif.
+              </p>
+            </div>
+            <div class="mt-8 flex gap-3">
+              <span
+                class="px-3 py-1 rounded-md bg-surface border border-outline-variant font-label-md text-label-md text-on-surface-variant"
+                >Anggota</span
+              >
+              <span
+                class="px-3 py-1 rounded-md bg-surface border border-outline-variant font-label-md text-label-md text-on-surface-variant"
+                >Transaksi</span
+              >
+              <span
+                class="px-3 py-1 rounded-md bg-surface border border-outline-variant font-label-md text-label-md text-on-surface-variant"
+                >Buku Besar</span
+              >
+            </div>
+          </div>
+          <!-- Offline Sync -->
+          <div
+            class="bg-[#18181B] border border-[#27272A] rounded-2xl p-8 flex flex-col justify-between group hover:border-secondary/30 transition-all duration-500 relative overflow-hidden"
+          >
+            <div
+              class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-secondary to-transparent transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500"
+            ></div>
+            <div>
+              <div
+                class="w-14 h-14 rounded-xl bg-surface border border-[#27272A] flex items-center justify-center mb-6"
+              >
+                <span class="material-symbols-outlined text-secondary text-3xl"
+                  >sync_disabled</span
+                >
+              </div>
+              <h3 class="font-headline-md text-headline-md text-white mb-3">
+                Offline Sync
+              </h3>
+              <p class="font-body-md text-body-md text-on-surface-variant">
+                Tetap beroperasi tanpa internet. Data transaksi akan otomatis
+                disinkronisasi ke server pusat saat koneksi kembali tersedia.
+              </p>
+            </div>
+          </div>
+          <!-- Sector: Livestock -->
+          <div
+            class="bg-[#18181B] border border-[#27272A] rounded-2xl p-8 group hover:border-primary/30 transition-all duration-300"
+          >
+            <div
+              class="w-12 h-12 rounded-lg bg-surface border border-[#27272A] flex items-center justify-center mb-5"
+            >
+              <span class="material-symbols-outlined text-primary-fixed-dim"
+                >pets</span
+              >
+            </div>
+            <h3 class="font-body-lg text-body-lg font-bold text-white mb-2">
+              Modul Peternakan
+            </h3>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">
+              Manajemen inventaris ternak, jadwal pakan, kesehatan, hingga
+              prediksi hasil panen dan integrasi penjualan.
+            </p>
+          </div>
+          <!-- Sector: Agriculture -->
+          <div
+            class="bg-[#18181B] border border-[#27272A] rounded-2xl p-8 group hover:border-primary/30 transition-all duration-300"
+          >
+            <div
+              class="w-12 h-12 rounded-lg bg-surface border border-[#27272A] flex items-center justify-center mb-5"
+            >
+              <span class="material-symbols-outlined text-primary-fixed-dim"
+                >agriculture</span
+              >
+            </div>
+            <h3 class="font-body-lg text-body-lg font-bold text-white mb-2">
+              Modul Pertanian
+            </h3>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">
+              Sistem pemantauan lahan, distribusi pupuk subsidi, pencatatan masa
+              tanam, dan pengelolaan kelompok tani.
+            </p>
+          </div>
+          <!-- Sector: Fishery -->
+          <div
+            class="bg-[#18181B] border border-[#27272A] rounded-2xl p-8 group hover:border-primary/30 transition-all duration-300"
+          >
+            <div
+              class="w-12 h-12 rounded-lg bg-surface border border-[#27272A] flex items-center justify-center mb-5"
+            >
+              <span class="material-symbols-outlined text-primary-fixed-dim"
+                >phishing</span
+              >
+            </div>
+            <h3 class="font-body-lg text-body-lg font-bold text-white mb-2">
+              Modul Perikanan
+            </h3>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">
+              Pencatatan hasil tangkap, manajemen pelelangan ikan (TPI)
+              terintegrasi, dan pengelolaan aset perahu.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer class="border-t border-[#27272A] bg-surface relative z-10">
+      <div
+        class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center gap-6"
+      >
+        <div class="flex items-center gap-3">
+          <div
+            class="w-8 h-8 rounded-md bg-primary/20 flex items-center justify-center border border-primary/30"
+          >
+            <span
+              class="material-symbols-outlined text-primary text-sm"
+              style="font-variation-settings: 'FILL' 1"
+              >widgets</span
+            >
+          </div>
+          <span class="font-body-md text-body-md font-bold text-on-surface"
+            >KoPintar © 2024</span
+          >
+        </div>
+        <div class="flex gap-6">
+          <a
+            class="font-body-sm text-body-sm text-on-surface-variant hover:text-white transition-colors"
+            href="#"
+            >Kebijakan Privasi</a
+          >
+          <a
+            class="font-body-sm text-body-sm text-on-surface-variant hover:text-white transition-colors"
+            href="#"
+            >Syarat Ketentuan</a
+          >
+          <a
+            class="font-body-sm text-body-sm text-on-surface-variant hover:text-white transition-colors"
+            href="#"
+            >Bantuan</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
