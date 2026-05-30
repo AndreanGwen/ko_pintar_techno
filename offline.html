@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Offline Sync - KoPintar</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;family=Inter:wght@400;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-primary": "#842bd2",
+              "secondary-fixed": "#6ffbbe",
+              "on-primary": "#490080",
+              surface: "#131313",
+              tertiary: "#c0c1ff",
+              "surface-container-low": "#1c1b1b",
+              "on-surface-variant": "#cfc2d6",
+              "on-tertiary-fixed-variant": "#2f2ebe",
+              "primary-fixed-dim": "#ddb7ff",
+              primary: "#ddb7ff",
+              "surface-container": "#201f1f",
+              "inverse-surface": "#e5e2e1",
+              "surface-dim": "#131313",
+              "surface-container-highest": "#353534",
+              "tertiary-fixed": "#e1e0ff",
+              "on-primary-fixed": "#2c0051",
+              "on-tertiary-container": "#0d0096",
+              "tertiary-fixed-dim": "#c0c1ff",
+              "inverse-on-surface": "#313030",
+              "on-primary-container": "#400071",
+              "surface-container-high": "#2a2a2a",
+              "outline-variant": "#4d4354",
+              "on-secondary-fixed-variant": "#005236",
+              "on-tertiary": "#1000a9",
+              "surface-container-lowest": "#0e0e0e",
+              "error-container": "#93000a",
+              error: "#ffb4ab",
+              "secondary-fixed-dim": "#4edea3",
+              "on-tertiary-fixed": "#07006c",
+              "on-background": "#e5e2e1",
+              "primary-container": "#b76dff",
+              outline: "#988d9f",
+              "tertiary-container": "#8083ff",
+              background: "#131313",
+              "on-secondary-container": "#00311f",
+              "secondary-container": "#00a572",
+              "surface-bright": "#393939",
+              "on-primary-fixed-variant": "#6900b3",
+              "on-secondary": "#003824",
+              "on-secondary-fixed": "#002113",
+              "on-surface": "#e5e2e1",
+              "on-error": "#690005",
+              "on-error-container": "#ffdad6",
+              "surface-variant": "#353534",
+              "surface-tint": "#ddb7ff",
+              secondary: "#4edea3",
+              "primary-fixed": "#f0dbff",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "stack-sm": "0.5rem",
+              gutter: "1.5rem",
+              "sidebar-width": "280px",
+              "stack-lg": "2rem",
+              "container-padding": "2rem",
+              "stack-md": "1rem",
+            },
+            fontFamily: {
+              "label-md": ["Inter"],
+              "headline-lg": ["Plus Jakarta Sans"],
+              "body-lg": ["Plus Jakarta Sans"],
+              "headline-lg-mobile": ["Plus Jakarta Sans"],
+              "body-sm": ["Plus Jakarta Sans"],
+              "display-lg": ["Plus Jakarta Sans"],
+              "body-md": ["Plus Jakarta Sans"],
+              "headline-md": ["Plus Jakarta Sans"],
+            },
+            fontSize: {
+              "label-md": [
+                "12px",
+                { lineHeight: "1", letterSpacing: "0.05em", fontWeight: "600" },
+              ],
+              "headline-lg": [
+                "32px",
+                {
+                  lineHeight: "1.2",
+                  letterSpacing: "-0.01em",
+                  fontWeight: "600",
+                },
+              ],
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+              "headline-lg-mobile": [
+                "28px",
+                { lineHeight: "1.2", fontWeight: "600" },
+              ],
+              "body-sm": ["14px", { lineHeight: "1.5", fontWeight: "400" }],
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "1.1",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+              "headline-md": ["24px", { lineHeight: "1.3", fontWeight: "600" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #09090b;
+      }
+      .glow-emerald {
+        box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+      } /* Using Neon Purple for primary glow as per guidance, but requested Emerald, so using secondary color for Emerald */
+      .glow-emerald-secondary {
+        box-shadow: 0 0 15px rgba(78, 222, 163, 0.4);
+      }
+      .glass-card {
+        background: rgba(24, 24, 27, 0.8);
+        backdrop-filter: blur(12px);
+        border: 1px solid #27272a;
+      }
+    </style>
+  </head>
+  <body class="text-on-surface font-body-md min-h-screen flex">
+    <!-- SideNavBar -->
+    <nav
+      class="bg-surface-container-low border-r border-outline-variant w-sidebar-width h-screen fixed left-0 top-0 overflow-y-auto flex flex-col py-gutter px-4 z-50"
+    >
+      <div class="mb-8 px-4 flex items-center gap-3">
+        <div
+          class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-headline-md text-headline-md"
+        >
+          K
+        </div>
+        <div>
+          <div class="text-headline-md font-headline-md font-bold text-primary">
+            KoPintar
+          </div>
+          <div class="text-label-md font-label-md text-on-surface-variant">
+            Koperasi Harapan Baru
+          </div>
+        </div>
+      </div>
+      <ul class="flex-1 space-y-1">
+        <li>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300"
+            href="#"
+          >
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="text-body-md font-body-md">Beranda</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300"
+            href="#"
+          >
+            <span class="material-symbols-outlined">group</span>
+            <span class="text-body-md font-body-md">Anggota</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300"
+            href="#"
+          >
+            <span class="material-symbols-outlined">receipt_long</span>
+            <span class="text-body-md font-body-md">Transaksi</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300"
+            href="#"
+          >
+            <span class="material-symbols-outlined">inventory_2</span>
+            <span class="text-body-md font-body-md">Inventaris</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300"
+            href="laporan.html"
+          >
+            <span class="material-symbols-outlined">assessment</span>
+            <span class="text-body-md font-body-md">Laporan</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300"
+            href="penggunaPeran.html"
+          >
+            <span class="material-symbols-outlined">manage_accounts</span>
+            <span class="text-body-md font-body-md">Pengguna &amp; Peran</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300"
+            href="#"
+          >
+            <span class="material-symbols-outlined">settings</span>
+            <span class="text-body-md font-body-md">Pengaturan</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300"
+            href="#"
+          >
+            <span class="material-symbols-outlined">history_edu</span>
+            <span class="text-body-md font-body-md">Audit Log</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300"
+            href="#"
+          >
+            <span class="material-symbols-outlined">pets</span>
+            <span class="text-body-md font-body-md">Peternakan</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300"
+            href="#"
+          >
+            <span class="material-symbols-outlined">agriculture</span>
+            <span class="text-body-md font-body-md">Pertanian</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300"
+            href="#"
+          >
+            <span class="material-symbols-outlined">phishing</span>
+            <span class="text-body-md font-body-md">Perikanan</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300"
+            href="#"
+          >
+            <span class="material-symbols-outlined">account_balance</span>
+            <span class="text-body-md font-body-md">Simpan Pinjam</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300"
+            href="#"
+          >
+            <span class="material-symbols-outlined">storefront</span>
+            <span class="text-body-md font-body-md">Perdagangan</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary bg-primary-container/10 border-l-4 border-primary font-bold scale-95 transition-transform hover:bg-surface-container-highest duration-300"
+            href="#"
+          >
+            <span class="material-symbols-outlined">sync_disabled</span>
+            <span class="text-body-md font-body-md">Offline Sync</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300"
+            href="marketplace.html"
+          >
+            <span class="material-symbols-outlined">shopping_bag</span>
+            <span class="text-body-md font-body-md">Marketplace</span>
+          </a>
+        </li>
+      </ul>
+      <div class="mt-8 px-4">
+        <button
+          class="w-full bg-primary text-on-primary py-2 rounded-lg font-body-md text-body-md font-bold hover:bg-primary-fixed transition-colors"
+        >
+          Buka Marketplace
+        </button>
+      </div>
+      <ul class="mt-4 space-y-1 border-t border-outline-variant pt-4">
+        <li>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300"
+            href="#"
+          >
+            <span class="material-symbols-outlined">help_outline</span>
+            <span class="text-body-md font-body-md">Bantuan</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="flex items-center gap-3 px-4 py-3 rounded-lg text-error hover:bg-surface-container-highest transition-all duration-300"
+            href="#"
+          >
+            <span class="material-symbols-outlined">logout</span>
+            <span class="text-body-md font-body-md">Keluar</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- Main Content Area -->
+    <div class="flex-1 ml-[280px] flex flex-col">
+      <!-- TopAppBar -->
+      <header
+        class="bg-surface border-b border-outline-variant h-16 px-gutter flex justify-between items-center fixed top-0 right-0 w-[calc(100%-280px)] z-40"
+      >
+        <div class="flex items-center gap-4">
+          <!-- Search on Left -->
+          <div class="relative hidden md:block">
+            <span
+              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm"
+              >search</span
+            >
+            <input
+              class="bg-surface-container-low border border-outline-variant rounded-full py-1.5 pl-10 pr-4 text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-64"
+              placeholder="Cari..."
+              type="text"
+            />
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <button
+            class="text-on-surface-variant hover:text-secondary-fixed transition-colors"
+          >
+            <span class="material-symbols-outlined">notifications</span>
+          </button>
+          <button
+            class="text-on-surface-variant hover:text-secondary-fixed transition-colors"
+          >
+            <span class="material-symbols-outlined">apps</span>
+          </button>
+          <div
+            class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant cursor-pointer hover:opacity-80 transition-opacity"
+          >
+            <span
+              class="material-symbols-outlined w-full h-full flex items-center justify-center text-on-surface-variant"
+              >account_circle</span
+            >
+          </div>
+        </div>
+      </header>
+      <!-- Dashboard Canvas -->
+      <main class="flex-1 mt-16 p-stack-lg overflow-y-auto">
+        <div class="max-w-6xl mx-auto space-y-8">
+          <!-- Header Section -->
+          <div>
+            <h1 class="text-headline-lg font-headline-lg text-on-surface mb-2">
+              Offline Sync Status
+            </h1>
+            <p class="text-body-lg font-body-lg text-on-surface-variant">
+              Kelola sinkronisasi data lokal saat koneksi internet tidak stabil.
+            </p>
+          </div>
+          <!-- Status Bento Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Main Status Card -->
+            <div
+              class="md:col-span-2 glass-card rounded-2xl p-6 relative overflow-hidden"
+            >
+              <div
+                class="absolute -right-10 -top-10 w-40 h-40 bg-error/10 rounded-full blur-3xl"
+              ></div>
+              <div class="flex justify-between items-start mb-6">
+                <div>
+                  <div class="flex items-center gap-2 mb-1">
+                    <span
+                      class="material-symbols-outlined text-error"
+                      style="font-variation-settings: 'FILL' 1"
+                      >wifi_off</span
+                    >
+                    <h2 class="text-headline-md font-headline-md text-error">
+                      Offline - Sinkronisasi Tertunda
+                    </h2>
+                  </div>
+                  <p class="text-body-sm font-body-sm text-on-surface-variant">
+                    Terakhir sinkronisasi: 2 jam yang lalu
+                  </p>
+                </div>
+                <label class="flex items-center cursor-pointer">
+                  <div class="relative">
+                    <input checked="" class="sr-only" type="checkbox" />
+                    <div
+                      class="block bg-surface-container-highest w-14 h-8 rounded-full border border-outline-variant"
+                    ></div>
+                    <div
+                      class="dot absolute left-1 top-1 bg-primary w-6 h-6 rounded-full transition transform translate-x-6"
+                    ></div>
+                  </div>
+                  <div
+                    class="ml-3 text-body-sm font-body-sm text-on-surface-variant"
+                  >
+                    Auto Sync
+                  </div>
+                </label>
+              </div>
+              <div class="space-y-4">
+                <div class="flex justify-between text-body-sm font-body-sm">
+                  <span class="text-on-surface"
+                    >Data lokal menunggu sinkronisasi</span
+                  >
+                  <span class="text-secondary font-bold">15 Rekaman</span>
+                </div>
+                <div
+                  class="w-full bg-surface-container-highest rounded-full h-2.5 overflow-hidden border border-outline-variant"
+                >
+                  <div
+                    class="bg-secondary h-2.5 rounded-full"
+                    style="width: 15%"
+                  ></div>
+                </div>
+              </div>
+              <div class="mt-8 flex gap-4">
+                <button
+                  class="bg-surface text-secondary border border-secondary px-6 py-2.5 rounded-lg text-body-md font-body-md font-bold hover:glow-emerald-secondary transition-all flex items-center gap-2"
+                >
+                  <span class="material-symbols-outlined text-sm">sync</span>
+                  Sinkronkan Manual
+                </button>
+              </div>
+            </div>
+            <!-- Info Card -->
+            <div
+              class="glass-card rounded-2xl p-6 flex flex-col justify-center"
+            >
+              <div
+                class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center mb-4"
+              >
+                <span class="material-symbols-outlined text-primary"
+                  >cloud_done</span
+                >
+              </div>
+              <p
+                class="text-body-md font-body-md text-on-surface-variant leading-relaxed"
+              >
+                Saat internet tidak tersedia, data akan disimpan secara lokal
+                dan disinkronisasi otomatis ketika koneksi kembali tersedia.
+              </p>
+            </div>
+          </div>
+          <!-- Sync History Table -->
+          <div class="glass-card rounded-2xl p-6">
+            <h3 class="text-headline-md font-headline-md text-on-surface mb-6">
+              Riwayat Sinkronisasi
+            </h3>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="border-b border-outline-variant">
+                    <th
+                      class="py-3 px-4 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider"
+                    >
+                      Waktu
+                    </th>
+                    <th
+                      class="py-3 px-4 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider"
+                    >
+                      Modul
+                    </th>
+                    <th
+                      class="py-3 px-4 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider"
+                    >
+                      Jumlah Data
+                    </th>
+                    <th
+                      class="py-3 px-4 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider"
+                    >
+                      Status
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="text-body-sm font-body-sm">
+                  <tr
+                    class="border-b border-surface-container-highest hover:bg-[#27272A] transition-colors"
+                  >
+                    <td class="py-3 px-4 text-on-surface">Hari ini, 08:30</td>
+                    <td class="py-3 px-4 text-on-surface">Transaksi</td>
+                    <td class="py-3 px-4 text-on-surface">42 Baris</td>
+                    <td class="py-3 px-4">
+                      <span
+                        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/20 text-secondary border border-secondary/30 text-label-md font-label-md"
+                      >
+                        <span class="material-symbols-outlined text-[14px]"
+                          >check_circle</span
+                        >
+                        Sukses
+                      </span>
+                    </td>
+                  </tr>
+                  <tr
+                    class="border-b border-surface-container-highest hover:bg-[#27272A] transition-colors"
+                  >
+                    <td class="py-3 px-4 text-on-surface">Kemarin, 17:45</td>
+                    <td class="py-3 px-4 text-on-surface">Anggota</td>
+                    <td class="py-3 px-4 text-on-surface">5 Baris</td>
+                    <td class="py-3 px-4">
+                      <span
+                        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/20 text-secondary border border-secondary/30 text-label-md font-label-md"
+                      >
+                        <span class="material-symbols-outlined text-[14px]"
+                          >check_circle</span
+                        >
+                        Sukses
+                      </span>
+                    </td>
+                  </tr>
+                  <tr
+                    class="border-b border-surface-container-highest hover:bg-[#27272A] transition-colors"
+                  >
+                    <td class="py-3 px-4 text-on-surface">Kemarin, 14:20</td>
+                    <td class="py-3 px-4 text-on-surface">Inventaris</td>
+                    <td class="py-3 px-4 text-on-surface">12 Baris</td>
+                    <td class="py-3 px-4">
+                      <span
+                        class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-error-container/20 text-error border border-error/30 text-label-md font-label-md"
+                      >
+                        <span class="material-symbols-outlined text-[14px]"
+                          >error</span
+                        >
+                        Gagal
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
