@@ -91,6 +91,8 @@
               "stack-lg": "2rem",
               "container-padding": "2rem",
               "stack-md": "1rem",
+              sm: "0.5rem",
+              md: "1rem",
             },
             fontFamily: {
               "label-md": ["Inter"],
@@ -137,11 +139,44 @@
       };
     </script>
     <style>
+      /* Custom glow effects as per style guidance */
+      .glow-primary:hover {
+        box-shadow: 0 0 15px rgba(221, 183, 255, 0.2); /* primary color glow */
+      }
+      .glow-secondary:hover {
+        box-shadow: 0 0 15px rgba(78, 222, 163, 0.2); /* secondary color glow */
+      }
       .glow-hover:hover {
         box-shadow: 0 0 20px rgba(221, 183, 255, 0.15); /* primary color glow */
       }
       .glow-hover-secondary:hover {
         box-shadow: 0 0 20px rgba(78, 222, 163, 0.15); /* secondary color glow */
+      }
+      /* Hide scrollbar for cleaner look in sidebar */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      /* Chart bar styling */
+      .chart-bar {
+        background: linear-gradient(
+          180deg,
+          #ddb7ff 0%,
+          rgba(221, 183, 255, 0.1) 100%
+        );
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        transition: height 0.5s ease-out;
+      }
+      .chart-bar:hover {
+        background: linear-gradient(
+          180deg,
+          #4edea3 0%,
+          rgba(78, 222, 163, 0.1) 100%
+        );
       }
       /* Chart Placeholders Styling */
       .bar-chart-bg {
@@ -156,8 +191,9 @@
     </style>
   </head>
   <body
-    class="bg-background text-on-background font-body-md min-h-screen overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container"
+    class="bg-surface-container-lowest text-on-surface font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container"
   >
+<<<<<<< HEAD
     <!-- SideNavBar Component -->
     <nav
       class="w-sidebar-width h-screen fixed left-0 top-0 overflow-y-auto bg-surface-container-low flex flex-col py-gutter px-4 border-r border-outline-variant z-50"
@@ -328,9 +364,11 @@
         </div>
       </div>
     </nav>
+=======
+>>>>>>> d5632be (finalize code)
     <!-- TopAppBar Component -->
     <header
-      class="fixed top-0 right-0 w-[calc(100%-280px)] z-40 bg-surface border-b border-outline-variant h-16 px-gutter flex justify-between items-center"
+      class="fixed top-0 right-0 w-[calc(100%-280px)] z-40 bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline-variant h-16 px-gutter flex justify-between items-center hidden md:flex"
     >
       <div class="flex items-center flex-1">
         <!-- Search Bar on Left as per JSON -->
@@ -340,13 +378,13 @@
             >search</span
           >
           <input
-            class="w-full bg-surface-container-low border border-outline-variant text-on-surface text-body-sm font-body-sm rounded-full py-2 pl-10 pr-4 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
+            class="w-full bg-surface-container-highest border border-outline-variant text-on-surface text-body-sm font-body-sm rounded-full py-2 pl-10 pr-4 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
             placeholder="Cari laporan, anggota, atau transaksi..."
             type="text"
           />
         </div>
       </div>
-      <div class="flex items-center gap-4 text-on-surface-variant">
+      <div class="flex items-center gap-4 ml-8">
         <button
           class="p-2 rounded-full hover:bg-surface-container hover:text-primary transition-all"
         >
@@ -357,473 +395,753 @@
         >
           <span class="material-symbols-outlined">apps</span>
         </button>
+        <div class="h-6 w-[1px] bg-outline-variant mx-2"></div>
         <button
-          class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border border-outline-variant"
+          class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border border-outline-variant hover:opacity-80 transition-opacity"
         >
-          <img
-            alt="Profil Pengguna"
-            class="w-full h-full object-cover"
-            data-alt="A professional headshot of an Indonesian cooperative manager in modern business attire, well-lit, sharp focus, corporate aesthetic."
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYorFnzJwvsJp1ya7t_6a4c130BDImblwFIEC9VlVvvzVv4Be4qig2aepRLIQpVmvJzAB8DSC9l8PhledbDZV5b843qFiIBjFqRn85kUd_z3yGPQg58QW5JSylL2kBLUdjbYHDnKxWo7shEHEIivFVe56U53cblFsWuYT1pWu5E_vMHOlzyZBEqLL8c4QrJ8WNMHGzUl1GvJfd_Q5e4COVkSaDfLp8BSATAimWCEGUMdASm00Le2wqmJRLdMUyoomsqsuPLKWbb6i4"
-          />
+          <span
+            class="material-symbols-outlined text-on-surface-variant"
+            style="font-variation-settings: 'FILL' 1"
+            >account_circle</span
+          >
         </button>
       </div>
     </header>
-    <!-- Main Content Canvas -->
-    <main class="ml-[280px] mt-16 p-8 min-h-[calc(100vh-64px)]">
-      <!-- Page Header & Actions -->
+
+    <!-- SideNavBar Component -->
+    <!-- SideNavBar Component -->
+    <aside
+      class="w-sidebar-width h-screen fixed left-0 top-0 overflow-y-auto no-scrollbar flex flex-col py-gutter px-4 border-r border-outline-variant dark:border-outline-variant bg-surface-container-low dark:bg-surface-container-low z-50"
+    >
+      <!-- Brand Area -->
+      <div class="flex items-center gap-3 mb-8 px-2">
+        <div
+          class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center shrink-0 border border-primary/30"
+        >
+          <span
+            class="material-symbols-outlined text-primary"
+            style="font-variation-settings: 'FILL' 1"
+            >hexagon</span
+          >
+        </div>
+        <div class="flex flex-col">
+          <span
+            class="text-headline-md font-headline-md font-bold text-primary dark:text-primary leading-none"
+            >KoPintar</span
+          >
+          <span class="text-label-md font-label-md text-on-surface-variant mt-1"
+            >Koperasi Harapan Baru</span
+          >
+        </div>
+      </div>
+
+      <!-- Main Navigation Tabs -->
+      <nav class="flex-1 flex flex-col gap-1">
+        <!-- Dashboard -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="dashboard.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >dashboard</span
+          >
+          <span class="text-body-sm font-body-sm">Dashboard</span>
+        </a>
+        <!-- Anggota -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="anggota.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >group</span
+          >
+          <span class="text-body-sm font-body-sm">Anggota</span>
+        </a>
+        <!-- Transaksi -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="transaksi.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >receipt_long</span
+          >
+          <span class="text-body-sm font-body-sm">Transaksi</span>
+        </a>
+        <!-- Inventaris -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="inventaris.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >inventory_2</span
+          >
+          <span class="text-body-sm font-body-sm">Inventaris</span>
+        </a>
+        <!-- Laporan (ACTIVE TAB) -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-primary dark:text-primary bg-primary-container/10 border-l-4 border-primary font-bold group"
+          href="laporan.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            style="font-variation-settings: 'FILL' 1"
+            >assessment</span
+          >
+          <span class="text-body-sm font-body-sm">Laporan</span>
+        </a>
+        <!-- Pengguna & Peran -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="penggunaPeran.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >manage_accounts</span
+          >
+          <span class="text-body-sm font-body-sm">Pengguna &amp; Peran</span>
+        </a>
+        <!-- Pengaturan -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >settings</span
+          >
+          <span class="text-body-sm font-body-sm">Pengaturan</span>
+        </a>
+        <div class="my-2 border-t border-surface-variant/50"></div>
+        <!-- Audit Log -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >history_edu</span
+          >
+          <span class="text-body-sm font-body-sm">Audit Log</span>
+        </a>
+        <!-- Peternakan -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="modul.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >pets</span
+          >
+          <span class="text-body-sm font-body-sm">Peternakan</span>
+        </a>
+        <!-- Pertanian -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >agriculture</span
+          >
+          <span class="text-body-sm font-body-sm">Pertanian</span>
+        </a>
+        <!-- Perikanan -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >phishing</span
+          >
+          <span class="text-body-sm font-body-sm">Perikanan</span>
+        </a>
+        <!-- Simpan Pinjam -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >account_balance</span
+          >
+          <span class="text-body-sm font-body-sm">Simpan Pinjam</span>
+        </a>
+        <!-- Perdagangan -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >storefront</span
+          >
+          <span class="text-body-sm font-body-sm">Perdagangan</span>
+        </a>
+        <!-- Offline Sync -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="offline.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >sync_disabled</span
+          >
+          <span class="text-body-sm font-body-sm">Offline Sync</span>
+        </a>
+        <!-- Marketplace -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="marketplace.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >shopping_bag</span
+          >
+          <span class="text-body-sm font-body-sm">Marketplace</span>
+        </a>
+      </nav>
+
+      <!-- CTA Widget -->
       <div
-        class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4"
+        class="mt-6 p-4 rounded-xl bg-gradient-to-br from-primary-container/20 to-transparent border border-primary/20 flex flex-col items-center text-center"
       >
-        <div>
-          <h2 class="text-headline-lg font-headline-lg text-primary mb-2">
-            Pusat Laporan
-          </h2>
-          <p class="text-body-md font-body-md text-on-surface-variant">
-            Ikhtisar komprehensif metrik performa Koperasi Harapan Baru.
-          </p>
-        </div>
-        <div class="flex items-center gap-3">
-          <div class="relative">
-            <select
-              class="appearance-none bg-surface-container-low border border-outline-variant text-body-sm font-body-sm text-on-surface rounded-lg py-2 pl-4 pr-10 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
-            >
-              <option>Bulan Ini (Okt 2023)</option>
-              <option>Kuartal Terakhir</option>
-              <option>Tahun Ini</option>
-            </select>
-            <span
-              class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-sm"
-              >expand_more</span
-            >
-          </div>
-          <button
-            class="flex items-center gap-2 px-4 py-2 border border-outline-variant text-on-surface rounded-lg hover:bg-surface-container-high transition-colors font-label-md text-label-md uppercase tracking-wider"
-          >
-            <span class="material-symbols-outlined text-[18px]"
-              >description</span
-            >
-            PDF
-          </button>
-          <button
-            class="flex items-center gap-2 px-4 py-2 bg-secondary text-on-secondary rounded-lg hover:brightness-110 glow-hover-secondary transition-all font-label-md text-label-md uppercase tracking-wider"
-          >
-            <span class="material-symbols-outlined text-[18px]"
-              >table_view</span
-            >
-            Excel
-          </button>
-        </div>
+        <span
+          class="material-symbols-outlined text-primary mb-2 text-[28px]"
+          style="font-variation-settings: 'FILL' 1"
+          >storefront</span
+        >
+        <span
+          class="text-body-sm font-body-sm font-semibold text-on-surface mb-3"
+          >Buka Marketplace</span
+        >
+        <button
+          class="w-full py-2 px-4 rounded-lg bg-primary text-on-primary text-label-md font-label-md hover:bg-primary-fixed transition-colors glow-primary"
+        >
+          Kunjungi Sekarang
+        </button>
       </div>
-      <!-- Bento Grid: Key Metrics -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <!-- Keuangan Card -->
-        <div
-          class="bg-surface-container-low border border-outline-variant rounded-2xl p-6 relative overflow-hidden glow-hover transition-all group"
+
+      <!-- Footer Actions -->
+      <div
+        class="mt-6 pt-4 border-t border-surface-variant/50 flex flex-col gap-1"
+      >
+        <a
+          class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface transition-colors"
+          href="#"
         >
-          <div
-            class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"
+          <span class="material-symbols-outlined text-[20px]"
+            >help_outline</span
           >
-            <span class="material-symbols-outlined text-6xl text-primary"
-              >account_balance_wallet</span
-            >
-          </div>
-          <h3
-            class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider mb-2"
-          >
-            Total Kas &amp; Bank
-          </h3>
-          <div class="text-headline-lg font-headline-lg text-on-surface mb-1">
-            Rp 1.250.400.000
-          </div>
-          <div
-            class="flex items-center gap-1 text-secondary text-body-sm font-body-sm"
-          >
-            <span class="material-symbols-outlined text-sm">trending_up</span>
-            <span>+12.5% dari bulan lalu</span>
-          </div>
-        </div>
-        <!-- Anggota Card -->
-        <div
-          class="bg-surface-container-low border border-outline-variant rounded-2xl p-6 relative overflow-hidden glow-hover transition-all group"
+          <span class="text-body-sm font-body-sm">Bantuan</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-3 py-2 rounded-lg text-error hover:bg-error/10 transition-colors"
+          href="#"
         >
-          <div
-            class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"
-          >
-            <span class="material-symbols-outlined text-6xl text-tertiary"
-              >groups</span
-            >
-          </div>
-          <h3
-            class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider mb-2"
-          >
-            Anggota Aktif
-          </h3>
-          <div class="text-headline-lg font-headline-lg text-on-surface mb-1">
-            842 <span class="text-body-md text-on-surface-variant">Orang</span>
-          </div>
-          <div
-            class="flex items-center gap-1 text-secondary text-body-sm font-body-sm"
-          >
-            <span class="material-symbols-outlined text-sm">person_add</span>
-            <span>+24 anggota baru</span>
-          </div>
-        </div>
-        <!-- Sektoral Card -->
-        <div
-          class="bg-surface-container-low border border-outline-variant rounded-2xl p-6 relative overflow-hidden glow-hover-secondary transition-all group"
-        >
-          <div
-            class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"
-          >
-            <span class="material-symbols-outlined text-6xl text-secondary"
-              >agriculture</span
-            >
-          </div>
-          <h3
-            class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider mb-2"
-          >
-            Output Sektoral Tertinggi
-          </h3>
-          <div class="text-headline-lg font-headline-lg text-on-surface mb-1">
-            Pertanian
-          </div>
-          <div
-            class="flex items-center gap-1 text-on-surface-variant text-body-sm font-body-sm"
-          >
-            <span>Menyumbang 45% total omset</span>
-          </div>
-        </div>
+          <span class="material-symbols-outlined text-[20px]">logout</span>
+          <span class="text-body-sm font-body-sm">Keluar</span>
+        </a>
       </div>
-      <!-- Charts Section -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-        <!-- Arus Kas Chart Placeholder -->
-        <div
-          class="bg-surface-container-low border border-outline-variant rounded-2xl p-6 flex flex-col h-[350px]"
+    </aside>
+
+    <!-- Main Content Canvas -->
+    <main class="ml-sidebar-width flex flex-col min-h-screen">
+      <div class="flex-1 p-gutter pt-[calc(64px+1.5rem)] pb-12">
+        <!-- Page Header & Actions -->
+        <section
+          class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4"
         >
-          <div class="flex justify-between items-center mb-6">
-            <h3 class="text-body-lg font-body-lg text-on-surface font-semibold">
-              Arus Kas (Pendapatan vs Pengeluaran)
-            </h3>
-            <button class="text-on-surface-variant hover:text-primary">
-              <span class="material-symbols-outlined">more_vert</span>
+          <div>
+            <h2 class="text-headline-lg font-headline-lg text-on-surface mb-2">
+              Pusat Laporan
+            </h2>
+            <p class="text-body-md font-body-md text-on-surface-variant">
+              Ikhtisar komprehensif metrik performa Koperasi Harapan Baru.
+            </p>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="relative">
+              <select
+                class="appearance-none bg-surface-container-low border border-outline-variant text-body-sm font-body-sm text-on-surface rounded-lg py-2 pl-4 pr-10 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary"
+              >
+                <option>Bulan Ini (Okt 2023)</option>
+                <option>Kuartal Terakhir</option>
+                <option>Tahun Ini</option>
+              </select>
+              <span
+                class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-sm"
+                >expand_more</span
+              >
+            </div>
+            <button
+              class="flex items-center gap-2 px-4 py-2 border border-outline-variant text-on-surface rounded-lg hover:bg-surface-container-high transition-colors font-label-md text-label-md uppercase tracking-wider"
+            >
+              <span class="material-symbols-outlined text-[18px]"
+                >description</span
+              >
+              PDF
+            </button>
+            <button
+              class="flex items-center gap-2 px-4 py-2 bg-secondary text-on-secondary rounded-lg hover:brightness-110 glow-secondary transition-all font-label-md text-label-md uppercase tracking-wider"
+            >
+              <span class="material-symbols-outlined text-[18px]"
+                >table_view</span
+              >
+              Excel
             </button>
           </div>
+        </section>
+
+        <!-- Bento Grid: Key Metrics -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <!-- Keuangan Card -->
           <div
-            class="flex-1 bar-chart-bg relative flex items-end justify-around pb-6 pt-4 border-l border-b border-outline-variant mx-4"
+            class="bg-surface-container-low border border-surface-container-highest rounded-2xl p-6 relative overflow-hidden glow-hover transition-all group shadow-lg"
           >
-            <!-- Y Axis Labels -->
             <div
-              class="absolute -left-10 top-0 h-full flex flex-col justify-between text-[10px] text-on-surface-variant"
-            >
-              <span>100M</span><span>75M</span><span>50M</span><span>25M</span
-              ><span>0</span>
-            </div>
-            <!-- Bars -->
-            <div class="w-8 md:w-12 flex gap-1 items-end h-full">
-              <div
-                class="w-full bg-primary/80 rounded-t-sm"
-                style="height: 60%"
-              ></div>
-              <div
-                class="w-full bg-outline-variant rounded-t-sm"
-                style="height: 40%"
-              ></div>
-            </div>
-            <div class="w-8 md:w-12 flex gap-1 items-end h-full">
-              <div
-                class="w-full bg-primary/80 rounded-t-sm"
-                style="height: 75%"
-              ></div>
-              <div
-                class="w-full bg-outline-variant rounded-t-sm"
-                style="height: 50%"
-              ></div>
-            </div>
-            <div class="w-8 md:w-12 flex gap-1 items-end h-full">
-              <div
-                class="w-full bg-primary/80 rounded-t-sm"
-                style="height: 90%"
-              ></div>
-              <div
-                class="w-full bg-outline-variant rounded-t-sm"
-                style="height: 45%"
-              ></div>
-            </div>
-            <div class="w-8 md:w-12 flex gap-1 items-end h-full">
-              <div
-                class="w-full bg-primary/80 rounded-t-sm"
-                style="height: 85%"
-              ></div>
-              <div
-                class="w-full bg-outline-variant rounded-t-sm"
-                style="height: 60%"
-              ></div>
-            </div>
-            <!-- X Axis Labels -->
-            <div
-              class="absolute -bottom-6 w-full flex justify-around text-label-md font-label-md text-on-surface-variant"
-            >
-              <span>Jul</span><span>Agu</span><span>Sep</span><span>Okt</span>
-            </div>
-          </div>
-          <div class="flex justify-center gap-6 mt-4">
-            <div
-              class="flex items-center gap-2 text-label-md font-label-md text-on-surface-variant"
-            >
-              <span class="w-3 h-3 rounded-full bg-primary/80"></span>
-              Pendapatan
-            </div>
-            <div
-              class="flex items-center gap-2 text-label-md font-label-md text-on-surface-variant"
-            >
-              <span class="w-3 h-3 rounded-full bg-outline-variant"></span>
-              Pengeluaran
-            </div>
-          </div>
-        </div>
-        <!-- Distribusi Anggota Chart Placeholder -->
-        <div
-          class="bg-surface-container-low border border-outline-variant rounded-2xl p-6 flex flex-col h-[350px]"
-        >
-          <div class="flex justify-between items-center mb-6">
-            <h3 class="text-body-lg font-body-lg text-on-surface font-semibold">
-              Distribusi Keuntungan Sektoral
-            </h3>
-            <button class="text-on-surface-variant hover:text-primary">
-              <span class="material-symbols-outlined">more_vert</span>
-            </button>
-          </div>
-          <div class="flex-1 flex items-center justify-center relative">
-            <!-- CSS Doughnut representation -->
-            <div
-              class="w-48 h-48 rounded-full border-[24px] border-surface-container-highest relative overflow-hidden"
-              style="
-                border-top-color: var(--color-primary);
-                border-right-color: var(--color-secondary);
-                border-bottom-color: var(--color-tertiary);
-                transform: rotate(45deg);
-              "
+              class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent"
             ></div>
             <div
-              class="absolute inset-0 flex flex-col items-center justify-center text-center"
+              class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"
             >
-              <span class="text-headline-md font-headline-md text-on-surface"
-                >Rp 450M</span
+              <span class="material-symbols-outlined text-6xl text-primary"
+                >account_balance_wallet</span
               >
-              <span
-                class="text-label-md font-label-md text-on-surface-variant uppercase"
-                >Total Profit</span
-              >
+            </div>
+            <h3
+              class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider mb-2 relative z-10"
+            >
+              Total Kas &amp; Bank
+            </h3>
+            <div class="text-headline-lg font-headline-lg text-on-surface mb-1">
+              Rp 1.250.400.000
+            </div>
+            <div
+              class="flex items-center gap-1 text-secondary text-body-sm font-body-sm"
+            >
+              <span class="material-symbols-outlined text-sm">trending_up</span>
+              <span>+12.5% dari bulan lalu</span>
             </div>
           </div>
-          <div class="grid grid-cols-2 gap-4 mt-2">
+
+          <!-- Anggota Card -->
+          <div
+            class="bg-surface-container-low border border-surface-container-highest rounded-2xl p-6 relative overflow-hidden glow-hover transition-all group shadow-lg"
+          >
             <div
-              class="flex items-center gap-2 text-label-md font-label-md text-on-surface-variant"
+              class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent"
+            ></div>
+            <div
+              class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"
             >
-              <span class="w-3 h-3 rounded-full bg-primary"></span> Pertanian
-              (45%)
+              <span class="material-symbols-outlined text-6xl text-tertiary"
+                >groups</span
+              >
+            </div>
+            <h3
+              class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider mb-2 relative z-10"
+            >
+              Anggota Aktif
+            </h3>
+            <div class="text-headline-lg font-headline-lg text-on-surface mb-1">
+              842
+              <span class="text-body-md text-on-surface-variant">Orang</span>
             </div>
             <div
-              class="flex items-center gap-2 text-label-md font-label-md text-on-surface-variant"
+              class="flex items-center gap-1 text-secondary text-body-sm font-body-sm"
             >
-              <span class="w-3 h-3 rounded-full bg-secondary"></span> Peternakan
-              (30%)
+              <span class="material-symbols-outlined text-sm">person_add</span>
+              <span>+24 anggota baru</span>
+            </div>
+          </div>
+
+          <!-- Sektoral Card -->
+          <div
+            class="bg-surface-container-low border border-surface-container-highest rounded-2xl p-6 relative overflow-hidden glow-hover-secondary transition-all group shadow-lg"
+          >
+            <div
+              class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-secondary/30 to-transparent"
+            ></div>
+            <div
+              class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"
+            >
+              <span class="material-symbols-outlined text-6xl text-secondary"
+                >agriculture</span
+              >
+            </div>
+            <h3
+              class="text-label-md font-label-md text-on-surface-variant uppercase tracking-wider mb-2 relative z-10"
+            >
+              Output Sektoral Tertinggi
+            </h3>
+            <div class="text-headline-lg font-headline-lg text-on-surface mb-1">
+              Pertanian
             </div>
             <div
-              class="flex items-center gap-2 text-label-md font-label-md text-on-surface-variant"
+              class="flex items-center gap-1 text-on-surface-variant text-body-sm font-body-sm"
             >
-              <span class="w-3 h-3 rounded-full bg-tertiary"></span> Simpan
-              Pinjam (15%)
-            </div>
-            <div
-              class="flex items-center gap-2 text-label-md font-label-md text-on-surface-variant"
-            >
-              <span
-                class="w-3 h-3 rounded-full bg-surface-container-highest"
-              ></span>
-              Lainnya (10%)
+              <span>Menyumbang 45% total omset</span>
             </div>
           </div>
         </div>
-      </div>
-      <!-- Data Grid Table -->
-      <div
-        class="bg-surface-container-low border border-outline-variant rounded-2xl overflow-hidden"
-      >
+
+        <!-- Charts Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+          <!-- Arus Kas Chart Placeholder -->
+          <div
+            class="bg-surface-container-low border border-surface-container-highest rounded-2xl p-6 flex flex-col h-[350px] shadow-lg relative overflow-hidden"
+          >
+            <div
+              class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent"
+            ></div>
+            <div class="flex justify-between items-center mb-6 relative z-10">
+              <h3
+                class="text-body-lg font-body-lg text-on-surface font-semibold"
+              >
+                Arus Kas (Pendapatan vs Pengeluaran)
+              </h3>
+              <button class="text-on-surface-variant hover:text-primary">
+                <span class="material-symbols-outlined">more_vert</span>
+              </button>
+            </div>
+            <div
+              class="flex-1 bar-chart-bg relative flex items-end justify-around pb-6 pt-4 border-l border-b border-outline-variant mx-4"
+            >
+              <!-- Y Axis Labels -->
+              <div
+                class="absolute -left-10 top-0 h-full flex flex-col justify-between text-[10px] text-on-surface-variant"
+              >
+                <span>100M</span><span>75M</span><span>50M</span><span>25M</span
+                ><span>0</span>
+              </div>
+              <!-- Bars -->
+              <div class="w-8 md:w-12 flex gap-1 items-end h-full">
+                <div
+                  class="w-full bg-primary/80 rounded-t-sm"
+                  style="height: 60%"
+                ></div>
+                <div
+                  class="w-full bg-outline-variant rounded-t-sm"
+                  style="height: 40%"
+                ></div>
+              </div>
+              <div class="w-8 md:w-12 flex gap-1 items-end h-full">
+                <div
+                  class="w-full bg-primary/80 rounded-t-sm"
+                  style="height: 75%"
+                ></div>
+                <div
+                  class="w-full bg-outline-variant rounded-t-sm"
+                  style="height: 50%"
+                ></div>
+              </div>
+              <div class="w-8 md:w-12 flex gap-1 items-end h-full">
+                <div
+                  class="w-full bg-primary/80 rounded-t-sm"
+                  style="height: 90%"
+                ></div>
+                <div
+                  class="w-full bg-outline-variant rounded-t-sm"
+                  style="height: 45%"
+                ></div>
+              </div>
+              <div class="w-8 md:w-12 flex gap-1 items-end h-full">
+                <div
+                  class="w-full bg-primary/80 rounded-t-sm"
+                  style="height: 85%"
+                ></div>
+                <div
+                  class="w-full bg-outline-variant rounded-t-sm"
+                  style="height: 60%"
+                ></div>
+              </div>
+              <!-- X Axis Labels -->
+              <div
+                class="absolute -bottom-6 w-full flex justify-around text-label-md font-label-md text-on-surface-variant"
+              >
+                <span>Jul</span><span>Agu</span><span>Sep</span><span>Okt</span>
+              </div>
+            </div>
+            <div class="flex justify-center gap-6 mt-4">
+              <div
+                class="flex items-center gap-2 text-label-md font-label-md text-on-surface-variant"
+              >
+                <span class="w-3 h-3 rounded-full bg-primary/80"></span>
+                Pendapatan
+              </div>
+              <div
+                class="flex items-center gap-2 text-label-md font-label-md text-on-surface-variant"
+              >
+                <span class="w-3 h-3 rounded-full bg-outline-variant"></span>
+                Pengeluaran
+              </div>
+            </div>
+          </div>
+
+          <!-- Distribusi Anggota Chart Placeholder -->
+          <div
+            class="bg-surface-container-low border border-surface-container-highest rounded-2xl p-6 flex flex-col h-[350px] shadow-lg relative overflow-hidden"
+          >
+            <div
+              class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent"
+            ></div>
+            <div class="flex justify-between items-center mb-6 relative z-10">
+              <h3
+                class="text-body-lg font-body-lg text-on-surface font-semibold"
+              >
+                Distribusi Keuntungan Sektoral
+              </h3>
+              <button class="text-on-surface-variant hover:text-primary">
+                <span class="material-symbols-outlined">more_vert</span>
+              </button>
+            </div>
+            <div class="flex-1 flex items-center justify-center relative">
+              <!-- CSS Doughnut representation -->
+              <div
+                class="w-48 h-48 rounded-full border-[24px] border-surface-container-highest relative overflow-hidden"
+                style="
+                  border-top-color: var(--color-primary);
+                  border-right-color: var(--color-secondary);
+                  border-bottom-color: var(--color-tertiary);
+                  transform: rotate(45deg);
+                "
+              ></div>
+              <div
+                class="absolute inset-0 flex flex-col items-center justify-center text-center"
+              >
+                <span class="text-headline-md font-headline-md text-on-surface"
+                  >Rp 450M</span
+                >
+                <span
+                  class="text-label-md font-label-md text-on-surface-variant uppercase"
+                  >Total Profit</span
+                >
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4 mt-2">
+              <div
+                class="flex items-center gap-2 text-label-md font-label-md text-on-surface-variant"
+              >
+                <span class="w-3 h-3 rounded-full bg-primary"></span> Pertanian
+                (45%)
+              </div>
+              <div
+                class="flex items-center gap-2 text-label-md font-label-md text-on-surface-variant"
+              >
+                <span class="w-3 h-3 rounded-full bg-secondary"></span>
+                Peternakan (30%)
+              </div>
+              <div
+                class="flex items-center gap-2 text-label-md font-label-md text-on-surface-variant"
+              >
+                <span class="w-3 h-3 rounded-full bg-tertiary"></span> Simpan
+                Pinjam (15%)
+              </div>
+              <div
+                class="flex items-center gap-2 text-label-md font-label-md text-on-surface-variant"
+              >
+                <span
+                  class="w-3 h-3 rounded-full bg-surface-container-highest"
+                ></span>
+                Lainnya (10%)
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data Grid Table -->
         <div
-          class="p-6 border-b border-outline-variant flex justify-between items-center"
+          class="bg-surface-container-low border border-surface-container-highest rounded-2xl overflow-hidden shadow-lg"
         >
-          <h3 class="text-body-lg font-body-lg text-on-surface font-semibold">
-            Daftar Laporan Terakhir
-          </h3>
-          <div class="flex gap-2">
-            <button
-              class="px-3 py-1 rounded-md text-label-md font-label-md bg-surface-container-highest text-on-surface hover:text-primary transition-colors"
-            >
-              Semua
-            </button>
-            <button
-              class="px-3 py-1 rounded-md text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-highest transition-colors"
-            >
-              Keuangan
-            </button>
-            <button
-              class="px-3 py-1 rounded-md text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-highest transition-colors"
-            >
-              Sektoral
-            </button>
+          <div
+            class="p-6 border-b border-outline-variant flex justify-between items-center"
+          >
+            <h3 class="text-body-lg font-body-lg text-on-surface font-semibold">
+              Daftar Laporan Terakhir
+            </h3>
+            <div class="flex gap-2">
+              <button
+                class="px-3 py-1 rounded-md text-label-md font-label-md bg-surface-container-highest text-on-surface hover:text-primary transition-colors"
+              >
+                Semua
+              </button>
+              <button
+                class="px-3 py-1 rounded-md text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-highest transition-colors"
+              >
+                Keuangan
+              </button>
+              <button
+                class="px-3 py-1 rounded-md text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-highest transition-colors"
+              >
+                Sektoral
+              </button>
+            </div>
           </div>
-        </div>
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse">
-            <thead>
-              <tr
-                class="bg-surface-container text-on-surface-variant text-label-md font-label-md uppercase tracking-wider border-b border-outline-variant"
-              >
-                <th class="py-4 px-6 font-semibold">ID Laporan</th>
-                <th class="py-4 px-6 font-semibold">Kategori</th>
-                <th class="py-4 px-6 font-semibold">Deskripsi</th>
-                <th class="py-4 px-6 font-semibold">Tanggal</th>
-                <th class="py-4 px-6 font-semibold">Status</th>
-                <th class="py-4 px-6 font-semibold text-right">Aksi</th>
-              </tr>
-            </thead>
-            <tbody class="text-body-sm font-body-sm text-on-surface">
-              <!-- Row 1 -->
-              <tr
-                class="border-b border-outline-variant/50 hover:bg-surface-container-highest transition-colors"
-              >
-                <td class="py-4 px-6 font-mono text-primary">REP-2310-001</td>
-                <td class="py-4 px-6">Keuangan</td>
-                <td class="py-4 px-6">Neraca Saldo Kuartal 3</td>
-                <td class="py-4 px-6 text-on-surface-variant">24 Okt 2023</td>
-                <td class="py-4 px-6">
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-secondary/10 text-secondary text-label-md font-label-md"
-                  >
-                    <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                    Selesai
-                  </span>
-                </td>
-                <td class="py-4 px-6 text-right">
-                  <button
-                    class="text-on-surface-variant hover:text-primary transition-colors"
-                  >
-                    <span class="material-symbols-outlined text-[20px]"
-                      >download</span
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr
+                  class="bg-surface-container text-on-surface-variant text-label-md font-label-md uppercase tracking-wider border-b border-outline-variant"
+                >
+                  <th class="py-4 px-6 font-semibold">ID Laporan</th>
+                  <th class="py-4 px-6 font-semibold">Kategori</th>
+                  <th class="py-4 px-6 font-semibold">Deskripsi</th>
+                  <th class="py-4 px-6 font-semibold">Tanggal</th>
+                  <th class="py-4 px-6 font-semibold">Status</th>
+                  <th class="py-4 px-6 font-semibold text-right">Aksi</th>
+                </tr>
+              </thead>
+              <tbody class="text-body-sm font-body-sm text-on-surface">
+                <!-- Row 1 -->
+                <tr
+                  class="border-b border-outline-variant/50 hover:bg-surface-container-highest transition-colors"
+                >
+                  <td class="py-4 px-6 font-mono text-primary">REP-2310-001</td>
+                  <td class="py-4 px-6">Keuangan</td>
+                  <td class="py-4 px-6">Neraca Saldo Kuartal 3</td>
+                  <td class="py-4 px-6 text-on-surface-variant">24 Okt 2023</td>
+                  <td class="py-4 px-6">
+                    <span
+                      class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-secondary/10 text-secondary text-label-md font-label-md"
                     >
-                  </button>
-                </td>
-              </tr>
-              <!-- Row 2 -->
-              <tr
-                class="border-b border-outline-variant/50 hover:bg-surface-container-highest transition-colors"
-              >
-                <td class="py-4 px-6 font-mono text-primary">REP-2310-002</td>
-                <td class="py-4 px-6">Modul Sektoral</td>
-                <td class="py-4 px-6">Rekapitulasi Panen Pertanian</td>
-                <td class="py-4 px-6 text-on-surface-variant">22 Okt 2023</td>
-                <td class="py-4 px-6">
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-secondary/10 text-secondary text-label-md font-label-md"
-                  >
-                    <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                    Selesai
-                  </span>
-                </td>
-                <td class="py-4 px-6 text-right">
-                  <button
-                    class="text-on-surface-variant hover:text-primary transition-colors"
-                  >
-                    <span class="material-symbols-outlined text-[20px]"
-                      >download</span
+                      <span
+                        class="w-1.5 h-1.5 rounded-full bg-secondary"
+                      ></span>
+                      Selesai
+                    </span>
+                  </td>
+                  <td class="py-4 px-6 text-right">
+                    <button
+                      class="text-on-surface-variant hover:text-primary transition-colors"
                     >
-                  </button>
-                </td>
-              </tr>
-              <!-- Row 3 -->
-              <tr
-                class="border-b border-outline-variant/50 hover:bg-surface-container-highest transition-colors"
-              >
-                <td class="py-4 px-6 font-mono text-primary">REP-2310-003</td>
-                <td class="py-4 px-6">Inventaris</td>
-                <td class="py-4 px-6">Audit Stok Pupuk &amp; Bibit</td>
-                <td class="py-4 px-6 text-on-surface-variant">20 Okt 2023</td>
-                <td class="py-4 px-6">
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-tertiary/10 text-tertiary text-label-md font-label-md"
-                  >
-                    <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
-                    Diproses
-                  </span>
-                </td>
-                <td class="py-4 px-6 text-right">
-                  <button
-                    class="text-on-surface-variant hover:text-primary transition-colors"
-                  >
-                    <span class="material-symbols-outlined text-[20px]"
-                      >download</span
+                      <span class="material-symbols-outlined text-[20px]"
+                        >download</span
+                      >
+                    </button>
+                  </td>
+                </tr>
+                <!-- Row 2 -->
+                <tr
+                  class="border-b border-outline-variant/50 hover:bg-surface-container-highest transition-colors"
+                >
+                  <td class="py-4 px-6 font-mono text-primary">REP-2310-002</td>
+                  <td class="py-4 px-6">Modul Sektoral</td>
+                  <td class="py-4 px-6">Rekapitulasi Panen Pertanian</td>
+                  <td class="py-4 px-6 text-on-surface-variant">22 Okt 2023</td>
+                  <td class="py-4 px-6">
+                    <span
+                      class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-secondary/10 text-secondary text-label-md font-label-md"
                     >
-                  </button>
-                </td>
-              </tr>
-              <!-- Row 4 -->
-              <tr class="hover:bg-surface-container-highest transition-colors">
-                <td class="py-4 px-6 font-mono text-primary">REP-2310-004</td>
-                <td class="py-4 px-6">Anggota</td>
-                <td class="py-4 px-6">Laporan Simpanan Wajib</td>
-                <td class="py-4 px-6 text-on-surface-variant">15 Okt 2023</td>
-                <td class="py-4 px-6">
-                  <span
-                    class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-secondary/10 text-secondary text-label-md font-label-md"
-                  >
-                    <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                    Selesai
-                  </span>
-                </td>
-                <td class="py-4 px-6 text-right">
-                  <button
-                    class="text-on-surface-variant hover:text-primary transition-colors"
-                  >
-                    <span class="material-symbols-outlined text-[20px]"
-                      >download</span
+                      <span
+                        class="w-1.5 h-1.5 rounded-full bg-secondary"
+                      ></span>
+                      Selesai
+                    </span>
+                  </td>
+                  <td class="py-4 px-6 text-right">
+                    <button
+                      class="text-on-surface-variant hover:text-primary transition-colors"
                     >
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div
-          class="p-4 border-t border-outline-variant flex justify-between items-center text-body-sm font-body-sm text-on-surface-variant"
-        >
-          <span>Menampilkan 1-4 dari 42 laporan</span>
-          <div class="flex gap-1">
-            <button
-              class="w-8 h-8 flex items-center justify-center rounded-md border border-outline-variant hover:bg-surface-container"
-            >
-              <span class="material-symbols-outlined text-sm"
-                >chevron_left</span
+                      <span class="material-symbols-outlined text-[20px]"
+                        >download</span
+                      >
+                    </button>
+                  </td>
+                </tr>
+                <!-- Row 3 -->
+                <tr
+                  class="border-b border-outline-variant/50 hover:bg-surface-container-highest transition-colors"
+                >
+                  <td class="py-4 px-6 font-mono text-primary">REP-2310-003</td>
+                  <td class="py-4 px-6">Inventaris</td>
+                  <td class="py-4 px-6">Audit Stok Pupuk &amp; Bibit</td>
+                  <td class="py-4 px-6 text-on-surface-variant">20 Okt 2023</td>
+                  <td class="py-4 px-6">
+                    <span
+                      class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-tertiary/10 text-tertiary text-label-md font-label-md"
+                    >
+                      <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                      Diproses
+                    </span>
+                  </td>
+                  <td class="py-4 px-6 text-right">
+                    <button
+                      class="text-on-surface-variant hover:text-primary transition-colors"
+                    >
+                      <span class="material-symbols-outlined text-[20px]"
+                        >download</span
+                      >
+                    </button>
+                  </td>
+                </tr>
+                <!-- Row 4 -->
+                <tr
+                  class="hover:bg-surface-container-highest transition-colors"
+                >
+                  <td class="py-4 px-6 font-mono text-primary">REP-2310-004</td>
+                  <td class="py-4 px-6">Anggota</td>
+                  <td class="py-4 px-6">Laporan Simpanan Wajib</td>
+                  <td class="py-4 px-6 text-on-surface-variant">15 Okt 2023</td>
+                  <td class="py-4 px-6">
+                    <span
+                      class="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-secondary/10 text-secondary text-label-md font-label-md"
+                    >
+                      <span
+                        class="w-1.5 h-1.5 rounded-full bg-secondary"
+                      ></span>
+                      Selesai
+                    </span>
+                  </td>
+                  <td class="py-4 px-6 text-right">
+                    <button
+                      class="text-on-surface-variant hover:text-primary transition-colors"
+                    >
+                      <span class="material-symbols-outlined text-[20px]"
+                        >download</span
+                      >
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Pagination Footer -->
+          <div
+            class="p-4 border-t border-outline-variant flex justify-between items-center text-body-sm font-body-sm text-on-surface-variant bg-surface-container-lowest"
+          >
+            <span>Menampilkan 1-4 dari 42 laporan</span>
+            <div class="flex items-center gap-1">
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled=""
               >
-            </button>
-            <button
-              class="w-8 h-8 flex items-center justify-center rounded-md bg-primary text-on-primary"
-            >
-              1
-            </button>
-            <button
-              class="w-8 h-8 flex items-center justify-center rounded-md border border-outline-variant hover:bg-surface-container"
-            >
-              2
-            </button>
-            <button
-              class="w-8 h-8 flex items-center justify-center rounded-md border border-outline-variant hover:bg-surface-container"
-            >
-              <span class="material-symbols-outlined text-sm"
-                >chevron_right</span
+                <span class="material-symbols-outlined text-[18px]"
+                  >chevron_left</span
+                >
+              </button>
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded bg-primary/10 text-primary border border-primary/30 font-label-md text-label-md"
               >
-            </button>
+                1
+              </button>
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded border border-transparent text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors font-label-md text-label-md"
+              >
+                2
+              </button>
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >chevron_right</span
+                >
+              </button>
+            </div>
           </div>
         </div>
       </div>

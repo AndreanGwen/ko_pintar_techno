@@ -1,17 +1,18 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html class="dark" lang="id">
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>KoPintar - Transaksi</title>
-    <!-- Google Fonts & Material Symbols -->
+    <title>Transaksi - KoPintar Koperasi Harapan Baru</title>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap"
       rel="stylesheet"
     />
+    <!-- Material Symbols -->
     <link
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
       rel="stylesheet"
@@ -22,7 +23,7 @@
     />
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <!-- Tailwind Configuration (Provided) -->
+    <!-- Tailwind Configuration -->
     <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -90,6 +91,8 @@
               "stack-lg": "2rem",
               "container-padding": "2rem",
               "stack-md": "1rem",
+              sm: "0.5rem",
+              md: "1rem",
             },
             fontFamily: {
               "label-md": ["Inter"],
@@ -104,11 +107,7 @@
             fontSize: {
               "label-md": [
                 "12px",
-                {
-                  lineHeight: "1",
-                  letterSpacing: "0.05em",
-                  fontWeight: "600",
-                },
+                { lineHeight: "1", letterSpacing: "0.05em", fontWeight: "600" },
               ],
               "headline-lg": [
                 "32px",
@@ -118,27 +117,12 @@
                   fontWeight: "600",
                 },
               ],
-              "body-lg": [
-                "18px",
-                {
-                  lineHeight: "1.6",
-                  fontWeight: "400",
-                },
-              ],
+              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
               "headline-lg-mobile": [
                 "28px",
-                {
-                  lineHeight: "1.2",
-                  fontWeight: "600",
-                },
+                { lineHeight: "1.2", fontWeight: "600" },
               ],
-              "body-sm": [
-                "14px",
-                {
-                  lineHeight: "1.5",
-                  fontWeight: "400",
-                },
-              ],
+              "body-sm": ["14px", { lineHeight: "1.5", fontWeight: "400" }],
               "display-lg": [
                 "48px",
                 {
@@ -147,43 +131,21 @@
                   fontWeight: "700",
                 },
               ],
-              "body-md": [
-                "16px",
-                {
-                  lineHeight: "1.6",
-                  fontWeight: "400",
-                },
-              ],
-              "headline-md": [
-                "24px",
-                {
-                  lineHeight: "1.3",
-                  fontWeight: "600",
-                },
-              ],
+              "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+              "headline-md": ["24px", { lineHeight: "1.3", fontWeight: "600" }],
             },
           },
         },
       };
     </script>
     <style>
-      /* Custom Scrollbar for dark theme */
-      ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
+      /* Custom glow effects as per style guidance */
+      .glow-primary:hover {
+        box-shadow: 0 0 15px rgba(221, 183, 255, 0.2);
       }
-      ::-webkit-scrollbar-track {
-        background: #131313;
+      .glow-secondary:hover {
+        box-shadow: 0 0 15px rgba(78, 222, 163, 0.2);
       }
-      ::-webkit-scrollbar-thumb {
-        background: #353534;
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #4d4354;
-      }
-
-      /* Subtle glow utilities */
       .glow-primary-hover:hover {
         box-shadow: 0 0 15px rgba(221, 183, 255, 0.4);
         transform: translateY(-1px);
@@ -192,243 +154,333 @@
         box-shadow: 0 0 15px rgba(78, 222, 163, 0.4);
         transform: translateY(-1px);
       }
+      /* Hide scrollbar for cleaner look in sidebar */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
     </style>
   </head>
   <body
-    class="bg-background text-on-background font-body-md text-body-md antialiased overflow-x-hidden min-h-screen flex"
+    class="bg-surface-container-lowest text-on-surface font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container"
   >
-    <!-- SideNavBar (Desktop) -->
-    <nav
-      class="hidden md:flex flex-col h-screen fixed left-0 top-0 overflow-y-auto w-sidebar-width z-50 bg-surface-container-low dark:bg-surface-container-low border-r border-outline-variant dark:border-outline-variant py-gutter px-4 transition-all duration-300"
+    <!-- TopAppBar -->
+    <header
+      class="fixed top-0 right-0 w-[calc(100%-280px)] z-40 bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline-variant flex justify-between items-center h-16 px-gutter hidden md:flex"
     >
-      <!-- Brand Header -->
-      <div class="flex items-center gap-3 px-3 mb-8">
+      <div class="flex-1 max-w-md">
         <div
-          class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center shrink-0"
+          class="relative flex items-center w-full h-10 rounded-full bg-surface-container-highest border border-outline-variant focus-within:border-primary focus-within:ring-1 focus-within:ring-primary overflow-hidden transition-all"
+        >
+          <div
+            class="grid place-items-center h-full w-12 text-on-surface-variant"
+          >
+            <span class="material-symbols-outlined text-[20px]">search</span>
+          </div>
+          <input
+            class="peer h-full w-full outline-none text-body-sm font-body-sm text-on-surface bg-transparent pr-4 placeholder-on-surface-variant/50 border-none focus:ring-0"
+            placeholder="Cari transaksi, anggota..."
+            type="text"
+          />
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button
+          class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-secondary-fixed dark:hover:text-secondary-fixed transition-colors active:opacity-80 relative"
+        >
+          <span class="material-symbols-outlined">notifications</span>
+          <span
+            class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full animate-pulse"
+          ></span>
+        </button>
+        <button
+          class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-secondary-fixed dark:hover:text-secondary-fixed transition-colors active:opacity-80"
+        >
+          <span class="material-symbols-outlined">apps</span>
+        </button>
+        <div class="h-6 w-[1px] bg-outline-variant mx-2"></div>
+        <button
+          class="flex items-center gap-3 hover:opacity-80 transition-opacity"
+        >
+          <div
+            class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center overflow-hidden border border-outline-variant"
+          >
+            <span
+              class="material-symbols-outlined text-on-surface-variant"
+              style="font-variation-settings: 'FILL' 1"
+              >account_circle</span
+            >
+          </div>
+        </button>
+      </div>
+    </header>
+
+    <!-- SideNavBar -->
+    <aside
+      class="w-sidebar-width h-screen fixed left-0 top-0 overflow-y-auto no-scrollbar flex flex-col py-gutter px-4 border-r border-outline-variant dark:border-outline-variant bg-surface-container-low dark:bg-surface-container-low z-50"
+    >
+      <!-- Brand / Header -->
+      <div class="flex items-center gap-3 mb-8 px-2">
+        <div
+          class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center shrink-0 border border-primary/30"
         >
           <span
-            class="material-symbols-outlined text-on-primary-container"
-            style="font-variation-settings: &quot;FILL&quot; 1"
-            >account_balance</span
+            class="material-symbols-outlined text-primary"
+            style="font-variation-settings: 'FILL' 1"
+            >hexagon</span
           >
         </div>
         <div class="flex flex-col">
           <span
-            class="text-headline-md font-headline-md font-bold text-primary dark:text-primary leading-tight"
+            class="text-headline-md font-headline-md font-bold text-primary dark:text-primary leading-none"
             >KoPintar</span
           >
-          <span
-            class="text-label-md font-label-md text-on-surface-variant truncate w-40"
+          <span class="text-label-md font-label-md text-on-surface-variant mt-1"
             >Koperasi Harapan Baru</span
           >
         </div>
       </div>
-      <!-- Navigation Links -->
-      <div class="flex-1 flex flex-col gap-1 overflow-y-auto">
-        <!-- Beranda -->
+      <!-- Navigation Tabs -->
+      <nav class="flex-1 flex flex-col gap-1">
+        <!-- Dashboard -->
         <a
-          class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
           href="dashboard.html"
         >
           <span
-            class="material-symbols-outlined group-hover:text-primary transition-colors"
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
             >dashboard</span
           >
-          <span class="font-body-md text-body-md">Dashboard</span>
+          <span class="text-body-sm font-body-sm">Dashboard</span>
         </a>
         <!-- Anggota -->
         <a
-          class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
           href="anggota.html"
         >
           <span
-            class="material-symbols-outlined group-hover:text-primary transition-colors"
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
             >group</span
           >
-          <span class="font-body-md text-body-md">Anggota</span>
+          <span class="text-body-sm font-body-sm">Anggota</span>
         </a>
-        <!-- Transaksi (Active) -->
+        <!-- Transaksi (ACTIVE) -->
         <a
-          class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary dark:text-primary bg-primary-container/10 border-l-4 border-primary font-bold scale-95 transition-transform"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-primary dark:text-primary bg-primary-container/10 border-l-4 border-primary font-bold group"
           href="transaksi.html"
         >
           <span
-            class="material-symbols-outlined"
-            style="font-variation-settings: &quot;FILL&quot; 1"
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            style="font-variation-settings: 'FILL' 1"
             >receipt_long</span
           >
-          <span class="font-body-md text-body-md">Transaksi</span>
+          <span class="text-body-sm font-body-sm">Transaksi</span>
         </a>
         <!-- Inventaris -->
         <a
-          class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
           href="inventaris.html"
         >
           <span
-            class="material-symbols-outlined group-hover:text-primary transition-colors"
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
             >inventory_2</span
           >
-          <span class="font-body-md text-body-md">Inventaris</span>
+          <span class="text-body-sm font-body-sm">Inventaris</span>
         </a>
         <!-- Laporan -->
         <a
+<<<<<<< HEAD
           class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+=======
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+>>>>>>> d5632be (finalize code)
           href="laporan.html"
         >
           <span
-            class="material-symbols-outlined group-hover:text-primary transition-colors"
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
             >assessment</span
           >
-          <span class="font-body-md text-body-md">Laporan</span>
+          <span class="text-body-sm font-body-sm">Laporan</span>
         </a>
-        <div class="h-px bg-outline-variant/50 my-2 mx-2"></div>
         <!-- Pengguna & Peran -->
         <a
+<<<<<<< HEAD
           class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+=======
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+>>>>>>> d5632be (finalize code)
           href="penggunaPeran.html"
         >
           <span
-            class="material-symbols-outlined group-hover:text-primary transition-colors"
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
             >manage_accounts</span
           >
-          <span class="font-body-md text-body-md">Pengguna &amp; Peran</span>
+          <span class="text-body-sm font-body-sm">Pengguna &amp; Peran</span>
         </a>
         <!-- Pengaturan -->
         <a
-          class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
           href="#"
         >
           <span
-            class="material-symbols-outlined group-hover:text-primary transition-colors"
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
             >settings</span
           >
-          <span class="font-body-md text-body-md">Pengaturan</span>
+          <span class="text-body-sm font-body-sm">Pengaturan</span>
         </a>
+        <div class="my-2 border-t border-surface-variant/50"></div>
         <!-- Audit Log -->
         <a
-          class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
           href="#"
         >
           <span
-            class="material-symbols-outlined group-hover:text-primary transition-colors"
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
             >history_edu</span
           >
-          <span class="font-body-md text-body-md">Audit Log</span>
+          <span class="text-body-sm font-body-sm">Audit Log</span>
         </a>
+        <!-- Peternakan -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="modul.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >pets</span
+          >
+          <span class="text-body-sm font-body-sm">Peternakan</span>
+        </a>
+        <!-- Pertanian -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >agriculture</span
+          >
+          <span class="text-body-sm font-body-sm">Pertanian</span>
+        </a>
+        <!-- Perikanan -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >phishing</span
+          >
+          <span class="text-body-sm font-body-sm">Perikanan</span>
+        </a>
+        <!-- Simpan Pinjam -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >account_balance</span
+          >
+          <span class="text-body-sm font-body-sm">Simpan Pinjam</span>
+        </a>
+        <!-- Perdagangan -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >storefront</span
+          >
+          <span class="text-body-sm font-body-sm">Perdagangan</span>
+        </a>
+        <!-- Offline Sync -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="offline.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >sync_disabled</span
+          >
+          <span class="text-body-sm font-body-sm">Offline Sync</span>
+        </a>
+        <!-- Marketplace -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="marketplace.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >shopping_bag</span
+          >
+          <span class="text-body-sm font-body-sm">Marketplace</span>
+        </a>
+      </nav>
+      <!-- CTA Widget -->
+      <div
+        class="mt-6 p-4 rounded-xl bg-gradient-to-br from-primary-container/20 to-transparent border border-primary/20 flex flex-col items-center text-center"
+      >
+        <span
+          class="material-symbols-outlined text-primary mb-2 text-[28px]"
+          style="font-variation-settings: 'FILL' 1"
+          >storefront</span
+        >
+        <span
+          class="text-body-sm font-body-sm font-semibold text-on-surface mb-3"
+          >Buka Marketplace</span
+        >
+        <button
+          class="w-full py-2 px-4 rounded-lg bg-primary text-on-primary text-label-md font-label-md hover:bg-primary-fixed transition-colors glow-primary"
+        >
+          Kunjungi Sekarang
+        </button>
       </div>
       <!-- Footer Actions -->
       <div
-        class="mt-auto pt-4 flex flex-col gap-1 border-t border-outline-variant/50"
+        class="mt-6 pt-4 border-t border-surface-variant/50 flex flex-col gap-1"
       >
-        <button
-          class="w-full py-3 px-4 bg-surface-container-high hover:bg-surface-container-highest text-primary font-label-md text-label-md rounded-lg flex justify-center items-center gap-2 transition-colors glow-primary-hover"
-        >
-          <span class="material-symbols-outlined text-[18px]"
-            >shopping_bag</span
-          >
-          Buka Marketplace
-        </button>
         <a
-          class="flex items-center gap-3 px-4 py-3 mt-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-colors group"
+          class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface transition-colors"
           href="#"
         >
-          <span class="material-symbols-outlined group-hover:text-primary"
+          <span class="material-symbols-outlined text-[20px]"
             >help_outline</span
           >
-          <span class="font-body-md text-body-md">Bantuan</span>
+          <span class="text-body-sm font-body-sm">Bantuan</span>
         </a>
         <a
-          class="flex items-center gap-3 px-4 py-3 rounded-lg text-error hover:bg-error-container/20 transition-colors group"
+          class="flex items-center gap-3 px-3 py-2 rounded-lg text-error hover:bg-error/10 transition-colors"
           href="#"
         >
-          <span class="material-symbols-outlined">logout</span>
-          <span class="font-body-md text-body-md">Keluar</span>
+          <span class="material-symbols-outlined text-[20px]">logout</span>
+          <span class="text-body-sm font-body-sm">Keluar</span>
         </a>
       </div>
-    </nav>
-    <!-- Main Content Wrapper -->
-    <div
-      class="flex-1 flex flex-col min-h-screen relative w-full md:ml-sidebar-width bg-background"
-    >
-      <!-- TopAppBar -->
-      <header
-        class="fixed top-0 right-0 w-full md:w-[calc(100%-280px)] z-40 bg-surface/90 backdrop-blur-md dark:bg-surface/90 border-b border-outline-variant dark:border-outline-variant flex justify-between items-center h-16 px-gutter transition-all"
-      >
-        <!-- Mobile Menu Toggle (Hidden on Desktop) -->
-        <button
-          class="md:hidden p-2 text-on-surface-variant hover:text-primary transition-colors"
-        >
-          <span class="material-symbols-outlined">menu</span>
-        </button>
-        <!-- Search Area (on_left) -->
-        <div class="flex-1 max-w-md hidden md:block">
-          <div class="relative group">
-            <span
-              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors"
-              >search</span
-            >
-            <input
-              class="w-full bg-surface-container-low border border-outline-variant rounded-full py-2 pl-10 pr-4 text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-on-surface-variant/70"
-              placeholder="Cari transaksi, anggota..."
-              type="text"
-            />
-          </div>
-        </div>
-        <!-- Trailing Actions -->
-        <div class="flex items-center gap-2 md:gap-4 ml-auto">
-          <button
-            class="p-2 text-on-surface-variant dark:text-on-surface-variant hover:text-secondary-fixed dark:hover:text-secondary-fixed transition-colors relative"
-          >
-            <span class="material-symbols-outlined">notifications</span>
-            <span
-              class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full animate-pulse"
-            ></span>
-          </button>
-          <button
-            class="p-2 text-on-surface-variant dark:text-on-surface-variant hover:text-secondary-fixed dark:hover:text-secondary-fixed transition-colors"
-          >
-            <span class="material-symbols-outlined">apps</span>
-          </button>
-          <div
-            class="h-8 w-px bg-outline-variant/50 mx-1 hidden md:block"
-          ></div>
-          <button
-            class="flex items-center gap-2 p-1 rounded-full hover:bg-surface-container-highest transition-colors"
-          >
-            <img
-              alt="Profil Pengguna"
-              class="w-8 h-8 rounded-full border border-outline-variant object-cover"
-              data-alt="A professional headshot of an Indonesian cooperative manager, smiling subtly, wearing a neat uniform, set against a dark, futuristic background with subtle neon purple lighting accents."
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7mOMwh9B-B_z8MRDS0myYgQ0XnqrVfcZfPtAErgIC2ep1sV_mCMrjFo9uKYy_S0INt90Fp8ZfsMkn-Swfdz0iQknhDpLeEx3sJZ-zJgjoanyRFbmcGBtImHGDdH6XxqQX_J_4t6-Yor3Y1QPR-zfqubzNPunNQigAlz9gZbm5L57cxfVVQ2LvtxbunEawiPGhoWmU9RsusJ-S3p2nt8140_ajasFXm10O5XsoUqwxh6-R3KxrvseTPvfUIsSi0OndTxQnOgpzo68x"
-            />
-            <span
-              class="material-symbols-outlined text-on-surface-variant hidden md:block"
-              >expand_more</span
-            >
-          </button>
-        </div>
-      </header>
-      <!-- Canvas (Main Content Area) -->
-      <main
-        class="flex-1 pt-16 px-4 md:px-container-padding pb-10 flex flex-col gap-stack-lg max-w-7xl mx-auto w-full mt-stack-md"
-      >
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="ml-sidebar-width flex flex-col min-h-screen">
+      <div class="flex-1 p-gutter pt-[calc(64px+1.5rem)] pb-12">
         <!-- Page Header & Actions -->
-        <div
-          class="flex flex-col md:flex-row md:items-end justify-between gap-4 mt-4"
+        <section
+          class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4"
         >
           <div>
-            <h1
-              class="font-headline-lg text-headline-lg md:font-display-lg md:text-display-lg text-on-surface mb-1"
-            >
+            <h1 class="text-headline-lg font-headline-lg text-on-surface mb-2">
               Transaksi
             </h1>
-            <p class="font-body-md text-body-md text-on-surface-variant">
+            <p class="text-body-sm font-body-sm text-on-surface-variant">
               Kelola arus kas, simpanan, dan pinjaman Koperasi Harapan Baru.
             </p>
           </div>
           <div class="flex items-center gap-3">
             <button
-              class="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-outline-variant bg-surface-container-low hover:bg-surface-container-highest text-on-surface font-label-md text-label-md transition-all"
+              class="flex items-center gap-2 px-4 py-2 rounded-lg border border-outline-variant bg-surface-container-low hover:bg-surface-container-highest text-on-surface font-label-md text-label-md transition-all"
             >
               <span class="material-symbols-outlined text-[18px]"
                 >download</span
@@ -436,16 +488,17 @@
               Ekspor CSV
             </button>
             <button
-              class="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md transition-all glow-primary-hover font-bold"
+              class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md transition-all glow-primary font-bold"
             >
               <span class="material-symbols-outlined text-[18px]">add</span>
               Tambah Transaksi Baru
             </button>
           </div>
-        </div>
-        <!-- Filter Bar (Glassmorphic vibe) -->
+        </section>
+
+        <!-- Filter Bar -->
         <div
-          class="bg-surface-container-low/80 backdrop-blur-sm border border-outline-variant rounded-xl p-4 flex flex-col md:flex-row gap-4 items-center justify-between"
+          class="bg-surface-container-low border border-outline-variant rounded-lg p-4 flex flex-col md:flex-row gap-4 items-center justify-between mb-6"
         >
           <div class="flex flex-wrap items-center gap-4 w-full md:w-auto">
             <!-- Date Range -->
@@ -453,13 +506,13 @@
               class="flex items-center gap-2 bg-surface-container p-1 rounded-lg border border-outline-variant/50"
             >
               <input
-                class="bg-transparent border-none text-body-sm font-body-sm text-on-surface focus:ring-0 [&amp;::-webkit-calendar-picker-indicator]:invert-[0.8]"
+                class="bg-transparent border-none text-body-sm font-body-sm text-on-surface focus:ring-0 [&::-webkit-calendar-picker-indicator]:invert-[0.8]"
                 type="date"
                 value="2023-10-01"
               />
               <span class="text-on-surface-variant">-</span>
               <input
-                class="bg-transparent border-none text-body-sm font-body-sm text-on-surface focus:ring-0 [&amp;::-webkit-calendar-picker-indicator]:invert-[0.8]"
+                class="bg-transparent border-none text-body-sm font-body-sm text-on-surface focus:ring-0 [&::-webkit-calendar-picker-indicator]:invert-[0.8]"
                 type="date"
                 value="2023-10-31"
               />
@@ -473,22 +526,23 @@
               <option value="debit">Debit (Keluar)</option>
             </select>
           </div>
-          <!-- Quick Search within Table -->
+          <!-- Quick Search -->
           <div class="relative w-full md:w-64">
             <span
               class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]"
               >search</span
             >
             <input
-              class="w-full bg-surface border border-outline-variant rounded-lg py-2 pl-9 pr-3 text-body-sm font-body-sm text-on-surface focus:ring-1 focus:ring-primary focus:border-primary transition-all"
+              class="w-full bg-surface-container border border-outline-variant rounded-lg py-2 pl-9 pr-3 text-body-sm font-body-sm text-on-surface focus:ring-1 focus:ring-primary focus:border-primary transition-all"
               placeholder="Cari ID atau Keterangan..."
               type="text"
             />
           </div>
         </div>
+
         <!-- Data Grid / Table Card -->
         <div
-          class="bg-surface-container-low border border-outline-variant rounded-2xl overflow-hidden shadow-lg shadow-black/20"
+          class="bg-surface-container-low border border-surface-container-highest rounded-2xl overflow-hidden shadow-lg"
         >
           <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse">
@@ -575,7 +629,7 @@
                   </td>
                   <td class="py-4 px-6 text-center">
                     <span
-                      class="inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-secondary-fixed/10 text-secondary-fixed font-label-md text-[11px] uppercase border border-secondary-fixed/20 shadow-[0_0_10px_rgba(111,251,190,0.1)]"
+                      class="inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-secondary-fixed/10 text-secondary-fixed font-label-md text-[11px] uppercase border border-secondary-fixed/20"
                     >
                       Berhasil
                     </span>
@@ -627,7 +681,7 @@
                   </td>
                   <td class="py-4 px-6 text-center">
                     <span
-                      class="inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-secondary-fixed/10 text-secondary-fixed font-label-md text-[11px] uppercase border border-secondary-fixed/20 shadow-[0_0_10px_rgba(111,251,190,0.1)]"
+                      class="inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-secondary-fixed/10 text-secondary-fixed font-label-md text-[11px] uppercase border border-secondary-fixed/20"
                     >
                       Berhasil
                     </span>
@@ -737,7 +791,7 @@
                   </td>
                   <td class="py-4 px-6 text-center">
                     <span
-                      class="inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-secondary-fixed/10 text-secondary-fixed font-label-md text-[11px] uppercase border border-secondary-fixed/20 shadow-[0_0_10px_rgba(111,251,190,0.1)]"
+                      class="inline-flex items-center justify-center px-2.5 py-1 rounded-full bg-secondary-fixed/10 text-secondary-fixed font-label-md text-[11px] uppercase border border-secondary-fixed/20"
                     >
                       Berhasil
                     </span>
@@ -797,7 +851,7 @@
             </div>
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   </body>
 </html>

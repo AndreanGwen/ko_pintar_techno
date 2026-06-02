@@ -1,23 +1,29 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html class="dark" lang="id">
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Inventaris - KoPintar</title>
+    <title>Inventaris - KoPintar Koperasi Harapan Baru</title>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Material Symbols -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;family=Inter:wght@400;600&amp;display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-      rel="stylesheet"
-    />
+    <!-- Tailwind Configuration -->
     <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -85,6 +91,8 @@
               "stack-lg": "2rem",
               "container-padding": "2rem",
               "stack-md": "1rem",
+              sm: "0.5rem",
+              md: "1rem",
             },
             fontFamily: {
               "label-md": ["Inter"],
@@ -131,174 +139,351 @@
       };
     </script>
     <style>
-      .glow-effect {
-        box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
-        transition: all 0.3s ease;
+      /* Custom glow effects as per style guidance */
+      .glow-primary:hover {
+        box-shadow: 0 0 15px rgba(221, 183, 255, 0.2);
       }
-      .glow-effect:hover {
-        box-shadow: 0 0 25px rgba(168, 85, 247, 0.6);
+      .glow-secondary:hover {
+        box-shadow: 0 0 15px rgba(78, 222, 163, 0.2);
       }
-      .neon-purple-glow {
-        box-shadow: 0 0 20px rgba(183, 109, 255, 0.8);
+      /* Hide scrollbar for cleaner look in sidebar */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
       }
-      .glass-card {
-        background: rgba(24, 24, 27, 0.7);
-        backdrop-filter: blur(12px);
-        border: 1px solid #27272a;
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
       }
     </style>
   </head>
-  <body class="bg-surface text-on-surface font-body-md min-h-screen">
+  <body
+    class="bg-surface-container-lowest text-on-surface font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container"
+  >
+    <!-- TopAppBar -->
+    <header
+      class="fixed top-0 right-0 w-[calc(100%-280px)] z-40 bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline-variant flex justify-between items-center h-16 px-gutter hidden md:flex"
+    >
+      <div class="flex-1 max-w-md">
+        <div
+          class="relative flex items-center w-full h-10 rounded-full bg-surface-container-highest border border-outline-variant focus-within:border-primary focus-within:ring-1 focus-within:ring-primary overflow-hidden transition-all"
+        >
+          <div
+            class="grid place-items-center h-full w-12 text-on-surface-variant"
+          >
+            <span class="material-symbols-outlined text-[20px]">search</span>
+          </div>
+          <input
+            class="peer h-full w-full outline-none text-body-sm font-body-sm text-on-surface bg-transparent pr-4 placeholder-on-surface-variant/50 border-none focus:ring-0"
+            placeholder="Cari item di inventaris..."
+            type="text"
+          />
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button
+          class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-secondary-fixed dark:hover:text-secondary-fixed transition-colors active:opacity-80 relative"
+        >
+          <span class="material-symbols-outlined">notifications</span>
+          <span
+            class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full animate-pulse"
+          ></span>
+        </button>
+        <button
+          class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-secondary-fixed dark:hover:text-secondary-fixed transition-colors active:opacity-80"
+        >
+          <span class="material-symbols-outlined">apps</span>
+        </button>
+        <div class="h-6 w-[1px] bg-outline-variant mx-2"></div>
+        <button
+          class="flex items-center gap-3 hover:opacity-80 transition-opacity"
+        >
+          <div
+            class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center overflow-hidden border border-outline-variant"
+          >
+            <span
+              class="material-symbols-outlined text-on-surface-variant"
+              style="font-variation-settings: 'FILL' 1"
+              >account_circle</span
+            >
+          </div>
+        </button>
+      </div>
+    </header>
+
     <!-- SideNavBar -->
     <aside
-      class="hidden md:flex bg-surface-container-low dark:bg-surface-container-low w-sidebar-width h-screen fixed left-0 top-0 overflow-y-auto border-r border-outline-variant dark:border-outline-variant flex flex-col h-full py-gutter px-4 z-50"
+      class="w-sidebar-width h-screen fixed left-0 top-0 overflow-y-auto no-scrollbar flex flex-col py-gutter px-4 border-r border-outline-variant dark:border-outline-variant bg-surface-container-low dark:bg-surface-container-low z-50"
     >
-      <div class="mb-8">
-        <h1
-          class="text-headline-md font-headline-md font-bold text-primary dark:text-primary tracking-tight"
+      <!-- Brand / Header -->
+      <div class="flex items-center gap-3 mb-8 px-2">
+        <div
+          class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center shrink-0 border border-primary/30"
         >
-          KoPintar
-        </h1>
-        <p class="text-body-sm font-body-sm text-on-surface-variant mt-1">
-          Koperasi Harapan Baru
-        </p>
+          <span
+            class="material-symbols-outlined text-primary"
+            style="font-variation-settings: 'FILL' 1"
+            >hexagon</span
+          >
+        </div>
+        <div class="flex flex-col">
+          <span
+            class="text-headline-md font-headline-md font-bold text-primary dark:text-primary leading-none"
+            >KoPintar</span
+          >
+          <span class="text-label-md font-label-md text-on-surface-variant mt-1"
+            >Koperasi Harapan Baru</span
+          >
+        </div>
       </div>
-      <nav class="flex-1 space-y-1">
+      <!-- Navigation Tabs -->
+      <nav class="flex-1 flex flex-col gap-1">
+        <!-- Dashboard -->
         <a
-          class="flex items-center px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
           href="dashboard.html"
         >
-          <span class="material-symbols-outlined mr-3">dashboard</span>
-          <span class="text-body-md font-body-md">Dashboard</span>
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >dashboard</span
+          >
+          <span class="text-body-sm font-body-sm">Dashboard</span>
         </a>
+        <!-- Anggota -->
         <a
-          class="flex items-center px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
           href="anggota.html"
         >
-          <span class="material-symbols-outlined mr-3">group</span>
-          <span class="text-body-md font-body-md">Anggota</span>
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >group</span
+          >
+          <span class="text-body-sm font-body-sm">Anggota</span>
         </a>
+        <!-- Transaksi -->
         <a
-          class="flex items-center px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
           href="transaksi.html"
         >
-          <span class="material-symbols-outlined mr-3">receipt_long</span>
-          <span class="text-body-md font-body-md">Transaksi</span>
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >receipt_long</span
+          >
+          <span class="text-body-sm font-body-sm">Transaksi</span>
         </a>
+        <!-- Inventaris (ACTIVE) -->
         <a
-          class="flex items-center px-3 py-2.5 rounded-lg text-primary dark:text-primary bg-primary-container/10 border-l-4 border-primary font-bold transition-transform scale-95"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-primary dark:text-primary bg-primary-container/10 border-l-4 border-primary font-bold group"
           href="inventaris.html"
         >
           <span
-            class="material-symbols-outlined mr-3"
-            style="font-variation-settings: &quot;FILL&quot; 1"
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            style="font-variation-settings: 'FILL' 1"
             >inventory_2</span
           >
-          <span class="text-body-md font-body-md">Inventaris</span>
+          <span class="text-body-sm font-body-sm">Inventaris</span>
         </a>
+        <!-- Laporan -->
         <a
+<<<<<<< HEAD
           class="flex items-center px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300"
           href="laporan.html"
+=======
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="laporan.html"
         >
-          <span class="material-symbols-outlined mr-3">assessment</span>
-          <span class="text-body-md font-body-md">Laporan</span>
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >assessment</span
+          >
+          <span class="text-body-sm font-body-sm">Laporan</span>
         </a>
+        <!-- Pengguna & Peran -->
         <a
-          class="flex items-center px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="penggunaPeran.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >manage_accounts</span
+          >
+          <span class="text-body-sm font-body-sm">Pengguna &amp; Peran</span>
+        </a>
+        <!-- Pengaturan -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+>>>>>>> d5632be (finalize code)
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >settings</span
+          >
+          <span class="text-body-sm font-body-sm">Pengaturan</span>
+        </a>
+        <div class="my-2 border-t border-surface-variant/50"></div>
+        <!-- Audit Log -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
           href="#"
         >
-          <span class="material-symbols-outlined mr-3">settings</span>
-          <span class="text-body-md font-body-md">Pengaturan</span>
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >history_edu</span
+          >
+          <span class="text-body-sm font-body-sm">Audit Log</span>
+        </a>
+        <!-- Peternakan -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="modul.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >pets</span
+          >
+          <span class="text-body-sm font-body-sm">Peternakan</span>
+        </a>
+        <!-- Pertanian -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >agriculture</span
+          >
+          <span class="text-body-sm font-body-sm">Pertanian</span>
+        </a>
+        <!-- Perikanan -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >phishing</span
+          >
+          <span class="text-body-sm font-body-sm">Perikanan</span>
+        </a>
+        <!-- Simpan Pinjam -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >account_balance</span
+          >
+          <span class="text-body-sm font-body-sm">Simpan Pinjam</span>
+        </a>
+        <!-- Perdagangan -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >storefront</span
+          >
+          <span class="text-body-sm font-body-sm">Perdagangan</span>
+        </a>
+        <!-- Offline Sync -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="offline.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >sync_disabled</span
+          >
+          <span class="text-body-sm font-body-sm">Offline Sync</span>
+        </a>
+        <!-- Marketplace -->
+        <a
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          href="marketplace.html"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
+            >shopping_bag</span
+          >
+          <span class="text-body-sm font-body-sm">Marketplace</span>
         </a>
       </nav>
-      <div class="mt-auto pt-4 border-t border-outline-variant">
-        <button
-          class="w-full bg-primary-container text-on-primary-container font-label-md text-label-md py-3 rounded-lg mb-4 glow-effect transition-all"
+      <!-- CTA Widget -->
+      <div
+        class="mt-6 p-4 rounded-xl bg-gradient-to-br from-primary-container/20 to-transparent border border-primary/20 flex flex-col items-center text-center"
+      >
+        <span
+          class="material-symbols-outlined text-primary mb-2 text-[28px]"
+          style="font-variation-settings: 'FILL' 1"
+          >storefront</span
         >
-          Buka Marketplace
+        <span
+          class="text-body-sm font-body-sm font-semibold text-on-surface mb-3"
+          >Buka Marketplace</span
+        >
+        <button
+          class="w-full py-2 px-4 rounded-lg bg-primary text-on-primary text-label-md font-label-md hover:bg-primary-fixed transition-colors glow-primary"
+        >
+          Kunjungi Sekarang
         </button>
+      </div>
+      <!-- Footer Actions -->
+      <div
+        class="mt-6 pt-4 border-t border-surface-variant/50 flex flex-col gap-1"
+      >
         <a
-          class="flex items-center px-3 py-2 text-on-surface-variant hover:text-primary transition-colors"
+          class="flex items-center gap-3 px-3 py-2 rounded-lg text-on-surface-variant hover:text-on-surface transition-colors"
           href="#"
         >
-          <span class="material-symbols-outlined mr-3">help_outline</span>
+          <span class="material-symbols-outlined text-[20px]"
+            >help_outline</span
+          >
           <span class="text-body-sm font-body-sm">Bantuan</span>
         </a>
         <a
-          class="flex items-center px-3 py-2 text-on-surface-variant hover:text-error transition-colors mt-1"
+          class="flex items-center gap-3 px-3 py-2 rounded-lg text-error hover:bg-error/10 transition-colors"
           href="#"
         >
-          <span class="material-symbols-outlined mr-3">logout</span>
+          <span class="material-symbols-outlined text-[20px]">logout</span>
           <span class="text-body-sm font-body-sm">Keluar</span>
         </a>
       </div>
     </aside>
-    <!-- TopAppBar -->
-    <header
-      class="hidden md:flex bg-surface dark:bg-surface fixed top-0 right-0 w-[calc(100%-280px)] z-40 border-b border-outline-variant dark:border-outline-variant justify-between items-center h-16 px-gutter"
-    >
-      <div
-        class="flex items-center bg-surface-container-highest rounded-full px-4 py-2 w-96 border border-outline-variant focus-within:border-primary transition-colors"
-      >
-        <span class="material-symbols-outlined text-on-surface-variant mr-2"
-          >search</span
-        >
-        <input
-          class="bg-transparent border-none text-body-sm font-body-sm text-on-surface focus:ring-0 w-full placeholder-on-surface-variant"
-          placeholder="Cari item di inventaris..."
-          type="text"
-        />
-      </div>
-      <div class="flex items-center space-x-4">
-        <button
-          class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container-highest"
-        >
-          <span class="material-symbols-outlined">notifications</span>
-        </button>
-        <button
-          class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container-highest"
-        >
-          <span class="material-symbols-outlined">apps</span>
-        </button>
-        <div
-          class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant flex items-center justify-center overflow-hidden"
-        >
-          <img
-            alt="Profil Pengguna"
-            class="w-full h-full object-cover"
-            data-alt="A close-up portrait of a professional man wearing a dark suit against a studio background. The lighting is soft and corporate, fitting a high-end dashboard interface profile picture. The mood is confident and trustworthy."
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBisV6EnCMAl4dvJB_RTem8Szu1782G2HfYaKBKnCiF8tjzoOLuS4eUg1feDw9wRMrJDcHzb5rko_IsNUJvOeGpW9AKoRKEpN8uJS4OC-RxUxgiBnLInv12d8E3i8zAYrBpACjcXlUAyhwibzCP4OMm5BRQ1AjOLPE2INSYQ2uE0f5GhSsSlZWRXutw9cUikYQGEvkfnN_FVHx4VJ_Sr7ugN3DbNP7f4LFAJG9cG9a4Vj-Kc6xL4X0mBAOul6NHCKm-N0-qqJlWGwev"
-          />
-        </div>
-      </div>
-    </header>
-    <!-- Main Content Canvas -->
-    <main class="md:ml-sidebar-width pt-16 md:pt-24 px-4 md:px-8 pb-12">
-      <div class="max-w-7xl mx-auto">
-        <header
-          class="mb-stack-lg flex flex-col md:flex-row md:items-end justify-between gap-4"
+
+    <!-- Main Content Area -->
+    <main class="ml-sidebar-width flex flex-col min-h-screen">
+      <div class="flex-1 p-gutter pt-[calc(64px+1.5rem)] pb-12">
+        <!-- Page Header & Actions -->
+        <section
+          class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4"
         >
           <div>
-            <h2 class="text-headline-lg font-headline-lg text-on-surface mb-2">
+            <h1 class="text-headline-lg font-headline-lg text-on-surface mb-2">
               Manajemen Inventaris
-            </h2>
-            <p class="text-body-md font-body-md text-on-surface-variant">
+            </h1>
+            <p class="text-body-sm font-body-sm text-on-surface-variant">
               Pantau stok pakan ternak, vitamin, dan peralatan koperasi.
             </p>
           </div>
           <button
-            class="bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-lg flex items-center justify-center gap-2 glow-effect"
+            class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md transition-all glow-primary font-bold"
           >
-            <span class="material-symbols-outlined">add</span>
+            <span class="material-symbols-outlined text-[18px]">add</span>
             Tambah Item Baru
           </button>
-        </header>
-        <!-- Bento Grid Stats -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-stack-lg">
+        </section>
+
+        <!-- Bento Grid: Key Metrics -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <!-- Stock Card 1 -->
           <div
-            class="glass-card rounded-2xl p-6 relative overflow-hidden group"
+            class="bg-surface-container-low border border-surface-container-highest rounded-2xl p-6 relative overflow-hidden group shadow-lg"
           >
+            <div
+              class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent"
+            ></div>
             <div
               class="absolute -right-6 -top-6 w-24 h-24 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition-all"
             ></div>
@@ -309,14 +494,16 @@
                 >
                   Pakan Sapi (Ton)
                 </p>
-                <h3 class="text-display-lg font-display-lg text-on-surface">
+                <h3 class="text-headline-lg font-headline-lg text-on-surface">
                   14.2
                 </h3>
               </div>
               <div
-                class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-primary"
+                class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center"
               >
-                <span class="material-symbols-outlined">grass</span>
+                <span class="material-symbols-outlined text-primary"
+                  >grass</span
+                >
               </div>
             </div>
             <div
@@ -328,11 +515,17 @@
               +2.4 Ton minggu ini
             </div>
           </div>
+
           <!-- Stock Card 2 (Alert) -->
           <div
-            class="glass-card rounded-2xl p-6 relative overflow-hidden neon-purple-glow border-primary"
+            class="bg-surface-container-low border border-primary/30 rounded-2xl p-6 relative overflow-hidden shadow-lg"
           >
-            <div class="absolute inset-0 bg-primary/5"></div>
+            <div
+              class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent"
+            ></div>
+            <div
+              class="absolute inset-0 bg-primary/5 pointer-events-none"
+            ></div>
             <div class="flex justify-between items-start mb-4 relative z-10">
               <div>
                 <p
@@ -343,14 +536,16 @@
                   >
                   Vitamin (Botol)
                 </p>
-                <h3 class="text-display-lg font-display-lg text-primary">45</h3>
+                <h3 class="text-headline-lg font-headline-lg text-primary">
+                  45
+                </h3>
               </div>
               <div
-                class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center text-primary"
+                class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center"
               >
                 <span
-                  class="material-symbols-outlined"
-                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  class="material-symbols-outlined text-primary"
+                  style="font-variation-settings: 'FILL' 1"
                   >medical_services</span
                 >
               </div>
@@ -361,10 +556,14 @@
               Stok Kritis - Perlu Restock Segera
             </div>
           </div>
+
           <!-- Stock Card 3 -->
           <div
-            class="glass-card rounded-2xl p-6 relative overflow-hidden group"
+            class="bg-surface-container-low border border-surface-container-highest rounded-2xl p-6 relative overflow-hidden group shadow-lg"
           >
+            <div
+              class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-secondary/30 to-transparent"
+            ></div>
             <div
               class="absolute -right-6 -top-6 w-24 h-24 bg-secondary/10 rounded-full blur-2xl group-hover:bg-secondary/20 transition-all"
             ></div>
@@ -375,14 +574,16 @@
                 >
                   Peralatan (Unit)
                 </p>
-                <h3 class="text-display-lg font-display-lg text-on-surface">
+                <h3 class="text-headline-lg font-headline-lg text-on-surface">
                   128
                 </h3>
               </div>
               <div
-                class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-secondary"
+                class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center"
               >
-                <span class="material-symbols-outlined">build</span>
+                <span class="material-symbols-outlined text-secondary"
+                  >build</span
+                >
               </div>
             </div>
             <div
@@ -395,12 +596,15 @@
             </div>
           </div>
         </div>
+
         <!-- Data Grid Table -->
-        <div class="glass-card rounded-2xl overflow-hidden">
+        <div
+          class="bg-surface-container-low border border-surface-container-highest rounded-2xl overflow-hidden shadow-lg"
+        >
           <div
-            class="px-6 py-4 border-b border-outline-variant/50 flex justify-between items-center bg-surface-container-low/50"
+            class="p-gutter border-b border-outline-variant flex justify-between items-center"
           >
-            <h3 class="text-headline-md font-headline-md text-on-surface">
+            <h3 class="text-body-lg font-body-lg text-on-surface font-semibold">
               Daftar Item Inventaris
             </h3>
             <div class="flex gap-2">
@@ -420,10 +624,10 @@
             <table class="w-full text-left border-collapse">
               <thead>
                 <tr
-                  class="bg-surface-container-lowest/50 border-b border-outline-variant/30"
+                  class="bg-surface-container-highest/50 border-b border-outline-variant"
                 >
                   <th
-                    class="px-6 py-4 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider"
+                    class="px-6 py-4 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider whitespace-nowrap"
                   >
                     Kode Item
                   </th>
@@ -433,32 +637,39 @@
                     Nama &amp; Kategori
                   </th>
                   <th
-                    class="px-6 py-4 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider text-right"
+                    class="px-6 py-4 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider text-right whitespace-nowrap"
                   >
                     Stok
                   </th>
                   <th
-                    class="px-6 py-4 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider text-right"
+                    class="px-6 py-4 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider text-right whitespace-nowrap"
                   >
                     Harga Satuan
                   </th>
                   <th
-                    class="px-6 py-4 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider text-center"
+                    class="px-6 py-4 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider text-center whitespace-nowrap"
                   >
                     Status
                   </th>
                   <th
-                    class="px-6 py-4 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider"
+                    class="px-6 py-4 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider text-center whitespace-nowrap"
                   >
                     Aksi
                   </th>
                 </tr>
               </thead>
               <tbody
-                class="divide-y divide-outline-variant/30 text-body-sm font-body-sm"
+                class="divide-y divide-outline-variant/30 text-body-sm font-body-sm text-on-surface"
               >
-                <tr class="hover:bg-[#27272A] transition-colors group">
-                  <td class="px-6 py-4 text-on-surface-variant">#ITM-001</td>
+                <!-- Row 1 -->
+                <tr
+                  class="hover:bg-surface-container-highest transition-colors group border-b border-outline-variant/30"
+                >
+                  <td
+                    class="px-6 py-4 text-on-surface-variant group-hover:text-primary transition-colors font-mono"
+                  >
+                    #ITM-001
+                  </td>
                   <td class="px-6 py-4">
                     <div class="font-bold text-on-surface">
                       Pakan Konsentrat Sapi Perah
@@ -475,12 +686,12 @@
                   </td>
                   <td class="px-6 py-4 text-center">
                     <span
-                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-secondary/10 text-secondary border border-secondary/20"
+                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-secondary-fixed/10 text-secondary-fixed border border-secondary-fixed/20"
                     >
                       Aman
                     </span>
                   </td>
-                  <td class="px-6 py-4">
+                  <td class="px-6 py-4 text-center">
                     <button
                       class="text-on-surface-variant hover:text-primary transition-colors opacity-0 group-hover:opacity-100"
                     >
@@ -488,10 +699,15 @@
                     </button>
                   </td>
                 </tr>
+                <!-- Row 2 -->
                 <tr
-                  class="hover:bg-[#27272A] transition-colors group bg-primary/5"
+                  class="hover:bg-surface-container-highest transition-colors group bg-primary/5 border-b border-outline-variant/30"
                 >
-                  <td class="px-6 py-4 text-on-surface-variant">#ITM-042</td>
+                  <td
+                    class="px-6 py-4 text-on-surface-variant group-hover:text-primary transition-colors font-mono"
+                  >
+                    #ITM-042
+                  </td>
                   <td class="px-6 py-4">
                     <div class="font-bold text-on-surface">
                       Vitamin B Kompleks Injeksi
@@ -510,12 +726,12 @@
                   </td>
                   <td class="px-6 py-4 text-center">
                     <span
-                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-primary/20 text-primary border border-primary/30 shadow-[0_0_8px_rgba(183,109,255,0.4)]"
+                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-primary/20 text-primary border border-primary/30"
                     >
                       Kritis
                     </span>
                   </td>
-                  <td class="px-6 py-4">
+                  <td class="px-6 py-4 text-center">
                     <button
                       class="text-primary hover:text-primary-fixed transition-colors"
                     >
@@ -525,8 +741,15 @@
                     </button>
                   </td>
                 </tr>
-                <tr class="hover:bg-[#27272A] transition-colors group">
-                  <td class="px-6 py-4 text-on-surface-variant">#ITM-089</td>
+                <!-- Row 3 -->
+                <tr
+                  class="hover:bg-surface-container-highest transition-colors group border-b border-outline-variant/30"
+                >
+                  <td
+                    class="px-6 py-4 text-on-surface-variant group-hover:text-primary transition-colors font-mono"
+                  >
+                    #ITM-089
+                  </td>
                   <td class="px-6 py-4">
                     <div class="font-bold text-on-surface">
                       Mesin Perah Portable (Milking Machine)
@@ -543,12 +766,12 @@
                   </td>
                   <td class="px-6 py-4 text-center">
                     <span
-                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-secondary/10 text-secondary border border-secondary/20"
+                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-secondary-fixed/10 text-secondary-fixed border border-secondary-fixed/20"
                     >
                       Aman
                     </span>
                   </td>
-                  <td class="px-6 py-4">
+                  <td class="px-6 py-4 text-center">
                     <button
                       class="text-on-surface-variant hover:text-primary transition-colors opacity-0 group-hover:opacity-100"
                     >
@@ -556,8 +779,15 @@
                     </button>
                   </td>
                 </tr>
-                <tr class="hover:bg-[#27272A] transition-colors group">
-                  <td class="px-6 py-4 text-on-surface-variant">#ITM-102</td>
+                <!-- Row 4 -->
+                <tr
+                  class="hover:bg-surface-container-highest transition-colors group"
+                >
+                  <td
+                    class="px-6 py-4 text-on-surface-variant group-hover:text-primary transition-colors font-mono"
+                  >
+                    #ITM-102
+                  </td>
                   <td class="px-6 py-4">
                     <div class="font-bold text-on-surface">
                       Tali Tambang Nilon (Gulung)
@@ -574,12 +804,12 @@
                   </td>
                   <td class="px-6 py-4 text-center">
                     <span
-                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-secondary/10 text-secondary border border-secondary/20"
+                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-secondary-fixed/10 text-secondary-fixed border border-secondary-fixed/20"
                     >
                       Aman
                     </span>
                   </td>
-                  <td class="px-6 py-4">
+                  <td class="px-6 py-4 text-center">
                     <button
                       class="text-on-surface-variant hover:text-primary transition-colors opacity-0 group-hover:opacity-100"
                     >
@@ -590,24 +820,36 @@
               </tbody>
             </table>
           </div>
+          <!-- Pagination Footer -->
           <div
-            class="px-6 py-4 border-t border-outline-variant/30 flex items-center justify-between bg-surface-container-low/30"
+            class="border-t border-outline-variant p-4 flex items-center justify-between bg-surface-container-lowest"
           >
-            <span class="text-label-md font-label-md text-on-surface-variant"
+            <span class="text-body-sm font-body-sm text-on-surface-variant"
               >Menampilkan 1-4 dari 156 Item</span
             >
-            <div class="flex gap-2">
+            <div class="flex items-center gap-1">
               <button
-                class="p-1 rounded bg-surface-container-highest text-on-surface-variant hover:text-on-surface disabled:opacity-50"
+                class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled=""
               >
-                <span class="material-symbols-outlined text-sm"
+                <span class="material-symbols-outlined text-[18px]"
                   >chevron_left</span
                 >
               </button>
               <button
-                class="p-1 rounded bg-surface-container-highest text-on-surface hover:text-primary"
+                class="w-8 h-8 flex items-center justify-center rounded bg-primary/10 text-primary border border-primary/30 font-label-md text-label-md"
               >
-                <span class="material-symbols-outlined text-sm"
+                1
+              </button>
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded border border-transparent text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors font-label-md text-label-md"
+              >
+                2
+              </button>
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors"
+              >
+                <span class="material-symbols-outlined text-[18px]"
                   >chevron_right</span
                 >
               </button>
