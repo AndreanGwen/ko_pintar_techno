@@ -91,6 +91,9 @@
               "stack-lg": "2rem",
               "container-padding": "2rem",
               "stack-md": "1rem",
+              sm: "0.5rem",
+              md: "1rem",
+              xs: "0.25rem",
             },
             fontFamily: {
               "label-md": ["Inter"],
@@ -177,7 +180,7 @@
   >
     <!-- TopAppBar -->
     <header
-      class="fixed top-0 right-0 w-[calc(100%-280px)] z-40 bg-surface dark:bg-surface border-b border-outline-variant dark:border-outline-variant flex justify-between items-center h-16 px-gutter hidden md:flex"
+      class="fixed top-0 right-0 w-[calc(100%-280px)] z-40 bg-surface border-b border-outline-variant flex justify-between items-center h-16 px-gutter hidden md:flex"
     >
       <div class="flex-1 max-w-md">
         <div
@@ -197,12 +200,15 @@
       </div>
       <div class="flex items-center gap-2">
         <button
-          class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-secondary-fixed dark:hover:text-secondary-fixed transition-colors active:opacity-80"
+          class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-secondary-fixed transition-colors active:opacity-80 relative"
         >
           <span class="material-symbols-outlined">notifications</span>
+          <span
+            class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full animate-pulse"
+          ></span>
         </button>
         <button
-          class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant dark:text-on-surface-variant hover:text-secondary-fixed dark:hover:text-secondary-fixed transition-colors active:opacity-80"
+          class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-secondary-fixed transition-colors active:opacity-80"
         >
           <span class="material-symbols-outlined">apps</span>
         </button>
@@ -225,7 +231,7 @@
 
     <!-- SideNavBar -->
     <aside
-      class="w-sidebar-width h-screen fixed left-0 top-0 overflow-y-auto no-scrollbar flex flex-col py-gutter px-4 border-r border-outline-variant dark:border-outline-variant bg-surface-container-low dark:bg-surface-container-low z-50"
+      class="w-sidebar-width h-screen fixed left-0 top-0 overflow-y-auto no-scrollbar flex flex-col py-gutter px-4 border-r border-outline-variant bg-surface-container-low z-50"
     >
       <!-- Brand / Header -->
       <div class="flex items-center gap-3 mb-8 px-2">
@@ -240,7 +246,7 @@
         </div>
         <div class="flex flex-col">
           <span
-            class="text-headline-md font-headline-md font-bold text-primary dark:text-primary leading-none"
+            class="text-headline-md font-headline-md font-bold text-primary leading-none"
             >KoPintar</span
           >
           <span class="text-label-md font-label-md text-on-surface-variant mt-1"
@@ -252,7 +258,7 @@
       <nav class="flex-1 flex flex-col gap-1">
         <!-- Dashboard (ACTIVE) -->
         <a
-          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-primary dark:text-primary bg-primary-container/10 border-l-4 border-primary font-bold group"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-primary bg-primary-container/10 border-l-4 border-primary font-bold group"
           href="dashboard.html"
         >
           <span
@@ -264,7 +270,7 @@
         </a>
         <!-- Anggota -->
         <a
-          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300 group"
           href="anggota.html"
         >
           <span
@@ -275,7 +281,7 @@
         </a>
         <!-- Transaksi -->
         <a
-          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300 group"
           href="transaksi.html"
         >
           <span
@@ -286,7 +292,7 @@
         </a>
         <!-- Inventaris -->
         <a
-          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300 group"
           href="inventaris.html"
         >
           <span
@@ -297,58 +303,29 @@
         </a>
         <!-- Laporan -->
         <a
-          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300 group"
           href="laporan.html"
         >
-<<<<<<< HEAD
-          <span class="material-symbols-outlined" data-icon="agriculture"
-            >agriculture</span
-          >
-          <span>Modul Peternakan</span>
-        </a>
-        <a
-          class="flex items-center gap-sm px-sm py-xs rounded-lg text-on-surface-variant font-medium transition-all duration-200 ease-in-out hover:bg-surface-container-high hover:text-on-surface"
-          href="laporan.html"
-        >
-          <span class="material-symbols-outlined" data-icon="assessment"
-=======
           <span
             class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
->>>>>>> d5632be (finalize code)
             >assessment</span
           >
           <span class="text-body-sm font-body-sm">Laporan</span>
         </a>
         <!-- Pengguna & Peran -->
         <a
-<<<<<<< HEAD
-          class="flex items-center gap-sm px-sm py-xs rounded-lg text-on-surface-variant font-medium transition-all duration-200 ease-in-out hover:bg-surface-container-high hover:text-on-surface"
-          href="offline.html"
-        >
-          <span class="material-symbols-outlined" data-icon="sync_alt"
-            >sync_alt</span
-          >
-          <span>Offline Sync</span>
-        </a>
-        <a
-          class="flex items-center gap-sm px-sm py-xs rounded-lg text-on-surface-variant font-medium transition-all duration-200 ease-in-out hover:bg-surface-container-high hover:text-on-surface"
-          href="penggunaPeran.html"
-        >
-          <span class="material-symbols-outlined" data-icon="manage_accounts"
-=======
-          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300 group"
           href="penggunaPeran.html"
         >
           <span
             class="material-symbols-outlined text-[20px] group-active:scale-95 transition-transform"
->>>>>>> d5632be (finalize code)
             >manage_accounts</span
           >
           <span class="text-body-sm font-body-sm">Pengguna &amp; Peran</span>
         </a>
         <!-- Pengaturan -->
         <a
-          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300 group"
           href="#"
         >
           <span
@@ -360,7 +337,7 @@
         <div class="my-2 border-t border-surface-variant/50"></div>
         <!-- Audit Log -->
         <a
-          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300 group"
           href="#"
         >
           <span
@@ -371,7 +348,7 @@
         </a>
         <!-- Peternakan -->
         <a
-          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300 group"
           href="modul.html"
         >
           <span
@@ -382,7 +359,7 @@
         </a>
         <!-- Pertanian -->
         <a
-          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300 group"
           href="#"
         >
           <span
@@ -393,7 +370,7 @@
         </a>
         <!-- Perikanan -->
         <a
-          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300 group"
           href="#"
         >
           <span
@@ -404,7 +381,7 @@
         </a>
         <!-- Simpan Pinjam -->
         <a
-          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300 group"
           href="#"
         >
           <span
@@ -415,7 +392,7 @@
         </a>
         <!-- Perdagangan -->
         <a
-          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300 group"
           href="#"
         >
           <span
@@ -426,7 +403,7 @@
         </a>
         <!-- Offline Sync -->
         <a
-          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300 group"
           href="offline.html"
         >
           <span
@@ -437,7 +414,7 @@
         </a>
         <!-- Marketplace -->
         <a
-          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-highest transition-all duration-300 group"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300 group"
           href="marketplace.html"
         >
           <span
@@ -507,13 +484,13 @@
           </div>
           <div class="flex gap-2">
             <button
-              class="bg-surface border border-secondary text-secondary font-label-md text-label-md pr-2 pl-2 py-2 rounded-lg hover:bg-secondary/10 transition-colors flex items-center gap-2 glow-secondary"
+              class="bg-surface border border-secondary text-secondary font-label-md text-label-md px-4 py-2 rounded-lg hover:bg-secondary/10 transition-colors flex items-center gap-2 glow-secondary"
             >
               <span class="material-symbols-outlined text-[18px]">sync</span>
               Sinkronkan Data
             </button>
             <button
-              class="bg-primary text-on-primary font-label-md text-label-md pr-2 pl-2 rounded-lg hover:bg-primary-fixed transition-colors flex items-center gap-2 glow-primary"
+              class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded-lg hover:bg-primary-fixed transition-colors flex items-center gap-2 glow-primary"
             >
               <span class="material-symbols-outlined text-[18px]">add</span>
               Tambah Transaksi
@@ -525,13 +502,14 @@
         <section
           class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter mb-8"
         >
+          <!-- Card 1 -->
           <div
-            class="bg-surface-container-low rounded-xl border border-surface-container-highest shadow-lg p-gutter flex flex-col justify-between relative overflow-hidden"
+            class="bg-surface-container-low rounded-2xl border border-surface-container-highest shadow-lg p-gutter flex flex-col justify-between relative overflow-hidden"
           >
             <div
               class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent"
             ></div>
-            <div class="flex justify-between items-start mb-sm relative z-10">
+            <div class="flex justify-between items-start mb-md relative z-10">
               <div
                 class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center"
               >
@@ -559,13 +537,14 @@
             </div>
           </div>
 
+          <!-- Card 2 -->
           <div
-            class="bg-surface-container-low rounded-xl border border-surface-container-highest shadow-lg p-gutter flex flex-col justify-between relative overflow-hidden"
+            class="bg-surface-container-low rounded-2xl border border-surface-container-highest shadow-lg p-gutter flex flex-col justify-between relative overflow-hidden"
           >
             <div
               class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent"
             ></div>
-            <div class="flex justify-between items-start mb-sm relative z-10">
+            <div class="flex justify-between items-start mb-md relative z-10">
               <div
                 class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center"
               >
@@ -586,13 +565,14 @@
             </div>
           </div>
 
+          <!-- Card 3 -->
           <div
-            class="bg-surface-container-low rounded-xl border border-surface-container-highest shadow-lg p-gutter flex flex-col justify-between relative overflow-hidden"
+            class="bg-surface-container-low rounded-2xl border border-surface-container-highest shadow-lg p-gutter flex flex-col justify-between relative overflow-hidden"
           >
             <div
               class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-secondary/30 to-transparent"
             ></div>
-            <div class="flex justify-between items-start mb-sm relative z-10">
+            <div class="flex justify-between items-start mb-md relative z-10">
               <div
                 class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center"
               >
@@ -617,13 +597,14 @@
             </div>
           </div>
 
+          <!-- Card 4 -->
           <div
-            class="bg-surface-container-low rounded-xl border border-surface-container-highest shadow-lg p-gutter flex flex-col justify-between relative overflow-hidden"
+            class="bg-surface-container-low rounded-2xl border border-surface-container-highest shadow-lg p-gutter flex flex-col justify-between relative overflow-hidden"
           >
             <div
               class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent"
             ></div>
-            <div class="flex justify-between items-start mb-sm relative z-10">
+            <div class="flex justify-between items-start mb-md relative z-10">
               <div
                 class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center"
               >
@@ -644,13 +625,14 @@
             </div>
           </div>
 
+          <!-- Card 5 -->
           <div
-            class="bg-surface-container-low rounded-xl border border-surface-container-highest shadow-lg p-gutter flex flex-col justify-between relative overflow-hidden"
+            class="bg-surface-container-low rounded-2xl border border-surface-container-highest shadow-lg p-gutter flex flex-col justify-between relative overflow-hidden"
           >
             <div
               class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-tertiary/30 to-transparent"
             ></div>
-            <div class="flex justify-between items-start mb-sm relative z-10">
+            <div class="flex justify-between items-start mb-md relative z-10">
               <div
                 class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center"
               >
@@ -675,13 +657,14 @@
             </div>
           </div>
 
+          <!-- Card 6 -->
           <div
-            class="bg-surface-container-low rounded-xl border border-surface-container-highest shadow-lg p-gutter flex flex-col justify-between relative overflow-hidden"
+            class="bg-surface-container-low rounded-2xl border border-surface-container-highest shadow-lg p-gutter flex flex-col justify-between relative overflow-hidden"
           >
             <div
               class="absolute -right-4 -top-4 w-24 h-24 bg-secondary/5 rounded-full blur-xl"
             ></div>
-            <div class="flex justify-between items-start mb-sm relative z-10">
+            <div class="flex justify-between items-start mb-md relative z-10">
               <div
                 class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center"
               >
@@ -731,9 +714,9 @@
               class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent"
             ></div>
             <div class="p-gutter">
-              <div class="flex justify-between items-center mb-lg">
+              <div class="flex justify-between items-center mb-gutter">
                 <h2
-                  class="font-headline-md text-headline-md text-on-surface flex items-center gap-sm"
+                  class="font-headline-md text-headline-md text-on-surface flex items-center gap-md"
                 >
                   <span class="material-symbols-outlined text-primary"
                     >bar_chart</span
@@ -792,7 +775,7 @@
             <div class="p-gutter">
               <div class="flex justify-between items-center mb-gutter">
                 <h2
-                  class="font-headline-md text-headline-md text-on-surface flex items-center gap-sm"
+                  class="font-headline-md text-headline-md text-on-surface flex items-center gap-md"
                 >
                   <span class="material-symbols-outlined text-primary"
                     >history</span
@@ -805,9 +788,10 @@
                   >Lihat Semua</a
                 >
               </div>
-              <div class="flex flex-col gap-5 overflow-y-auto">
+              <div class="flex flex-col gap-md overflow-y-auto">
+                <!-- Activity 1 -->
                 <div
-                  class="flex items-center gap-sm p-sm rounded-lg bg-surface-container border border-outline-variant/50 hover:border-primary/50 transition-colors"
+                  class="flex items-center gap-md p-md rounded-lg bg-surface-container border border-outline-variant/50 hover:border-primary/50 transition-colors"
                 >
                   <div
                     class="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center shrink-0"
@@ -827,13 +811,16 @@
                       Hari ini, 08:45 WIB
                     </div>
                   </div>
-                  <div class="text-secondary font-label-md text-label-md">
+                  <div
+                    class="text-secondary font-label-md text-label-md shrink-0"
+                  >
                     + 120 L
                   </div>
                 </div>
 
+                <!-- Activity 2 -->
                 <div
-                  class="flex items-center gap-sm p-sm rounded-lg bg-surface-container border border-outline-variant/50 hover:border-primary/50 transition-colors"
+                  class="flex items-center gap-md p-md rounded-lg bg-surface-container border border-outline-variant/50 hover:border-primary/50 transition-colors"
                 >
                   <div
                     class="w-8 h-8 rounded-full bg-error/20 flex items-center justify-center shrink-0"
@@ -853,13 +840,14 @@
                       Hari ini, 07:30 WIB
                     </div>
                   </div>
-                  <div class="text-error font-label-md text-label-md">
+                  <div class="text-error font-label-md text-label-md shrink-0">
                     - Rp 2.5M
                   </div>
                 </div>
 
+                <!-- Activity 3 -->
                 <div
-                  class="flex items-center gap-sm p-sm rounded-lg bg-surface-container border border-outline-variant/50 hover:border-primary/50 transition-colors"
+                  class="flex items-center gap-md p-md rounded-lg bg-surface-container border border-outline-variant/50 hover:border-primary/50 transition-colors"
                 >
                   <div
                     class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center shrink-0"
@@ -881,8 +869,9 @@
                   </div>
                 </div>
 
+                <!-- Activity 4 -->
                 <div
-                  class="flex items-center gap-sm p-sm rounded-lg bg-surface-container border border-outline-variant/50 hover:border-primary/50 transition-colors"
+                  class="flex items-center gap-md p-md rounded-lg bg-surface-container border border-outline-variant/50 hover:border-primary/50 transition-colors"
                 >
                   <div
                     class="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center shrink-0"
@@ -902,7 +891,9 @@
                       Kemarin, 14:10 WIB
                     </div>
                   </div>
-                  <div class="text-secondary font-label-md text-label-md">
+                  <div
+                    class="text-secondary font-label-md text-label-md shrink-0"
+                  >
                     + 85 L
                   </div>
                 </div>
